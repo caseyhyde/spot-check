@@ -6,9 +6,12 @@
   </form></br></br></br></br>
   <div id="results" ng-repeat="spot in search.searchResults">
     <h4>{{spot.spotName}}</h4>
-    <p>{{spot.address.streetAddress}} {{spot.address.city}},
+    <p>
+      {{spot.address.streetAddress}}</br>
+      {{spot.address.city}},
       {{spot.address.state}}
-      {{spot.address.zip}}</p>
-    <p>{{spot.details.notes}}</p>
+      {{spot.address.zip}}</br>
+      {{spot.details.notes}}
+    </p>
   </div>
 </div>
