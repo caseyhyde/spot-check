@@ -12,4 +12,7 @@ spotCheckApp.config(['$routeProvider', function($routeProvider) {
       controller: 'AddSpotController',
       controllerAs: 'add'
     })
+    .otherwise({
+      redirectTo: '/search'
+    })
 }]);//End router

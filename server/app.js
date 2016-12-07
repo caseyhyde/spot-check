@@ -2,6 +2,7 @@ var express = require('express'); //Bring in express
 var app = express(); //Creat app variable for calling express
 var bodyParser = require('body-parser'); //Bring in body-parser
 var path = require('path');
+var mongoConnection = require('./modules/mongo-connection');
 
 var port = process.env.PORT || 3000;
 
