@@ -6,7 +6,6 @@ router.post('/', function(req, res) {
   console.log('Add Spot route hit. Spot to add: ', req.body);
 
   var newSpot = new Spot(req.body);
-  console.log(newSpot);
 
   newSpot.save(function(err, data) {
     if(err) {

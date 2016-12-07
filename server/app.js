@@ -4,6 +4,7 @@ var bodyParser = require('body-parser'); //Bring in body-parser
 var path = require('path');
 var mongoConnection = require('./modules/mongo-connection');
 var addSpot = require('./routes/add-spot');
+var searchSpots = require('./routes/search-spots');
 
 var port = process.env.PORT || 3000;
 
@@ -15,6 +16,7 @@ app.get('/', function(req, res) {
 });//Send index.html on page load
 
 app.use('/addSpot', addSpot);
+app.use('/searchSpots', searchSpots)
 
 //Call the function exported as the connect property of mongo-connection
 //which connects us to our Mongo database.

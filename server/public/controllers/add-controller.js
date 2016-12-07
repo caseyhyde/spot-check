@@ -24,6 +24,7 @@ spotCheckApp.controller('AddSpotController', [ '$http', function($http) {
       data: self.newSpot
     }).then(function() {
       console.log('New spot added to db successfully!');
+      self.newSpot = {};
     }).catch(function(err) {
       console.log('POST error sending new spot to server: ', err);
     });
