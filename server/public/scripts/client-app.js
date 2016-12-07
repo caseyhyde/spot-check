@@ -1,5 +1,6 @@
 var spotCheckApp = angular.module('spotCheckApp', ['ngRoute']);
 
+
 spotCheckApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/search', {

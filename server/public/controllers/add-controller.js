@@ -1,6 +1,5 @@
-spotCheckApp.controller('AddSpotController', [ '$http', function($http) {
+spotCheckApp.controller('AddSpotController', ['$http', 'SpotFactory', function($http, SpotFactory) {
   console.log('Add a Spot controller is running');
-
   var self = this;
 
   self.newSpot = {
@@ -15,20 +14,14 @@ spotCheckApp.controller('AddSpotController', [ '$http', function($http) {
     }
   };
 
-  self.addSpot = function() {
+  self.reviewSpot = function() {
     event.preventDefault();
-
-    $http({
-      method: 'POST',
-      url: '/addSpot',
-      data: self.newSpot
-    }).then(function() {
-      console.log('New spot added to db successfully!');
-      self.newSpot = {};
-    }).catch(function(err) {
-      console.log('POST error sending new spot to server: ', err);
-    });
+    SpotFactory.setSpotData(self.newSpot);
+    SpotFactory.addSpot();
   }
+
+
+
 
 
 
