@@ -1,9 +1,15 @@
 <div class="col-xs-9 input-group">
   <form class="" action="index.html" method="post">
-    <input id="spotName" type="text" class="form-control" placeholder="Spot Name">
-    <input id="streetAddress" type="text" class="form-control" placeholder="Street Address">
-    <input id="city" type="text" class="form-control" placeholder="City">
-    <input id="state" type="text" class="form-control" placeholder="State">
-    <input id="zip" type="text" class="form-control" placeholder="Zip">
+    <input ng-model="add.newSpot.spotName" id="spotName" type="text" class="form-control" placeholder="Spot Name">
+    <input ng-model="add.newSpot.address.streetAddress" id="streetAddress" type="text" class="form-control" placeholder="Street Address">
+    <input ng-model="add.newSpot.address.city" id="city" type="text" class="form-control" placeholder="City">
+    <input ng-model="add.newSpot.address.state" id="state" type="text" class="form-control" placeholder="State">
+    <input ng-model="add.newSpot.address.zip" id="zip" type="text" class="form-control" placeholder="Zip">
+    <button ng-click="add.addSpot()">Add Spot</button>
   </form>
+  <div id="formTestDiv">
+    <h3>From info: </br></h3>
+    <p>{{add.newSpot.spotName}}</br>{{add.newSpot.address.streetAddress}}</br>
+    {{add.newSpot.address.city}}</br>{{add.newSpot.address.state}}</br>{{add.newSpot.address.zip}}</p>
+  </div>
 </div>
