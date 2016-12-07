@@ -11,6 +11,9 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, './public/views/index.html'));
 });//Send index.html on page load
 
+//Call the function exported as the connect property of mongo-connection
+mongoConnection.connect();
+
 
 
 
