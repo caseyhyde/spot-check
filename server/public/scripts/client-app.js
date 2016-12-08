@@ -18,6 +18,11 @@ spotCheckApp.config(['$routeProvider', function($routeProvider) {
       controller: 'ReviewController',
       controllerAs: 'review'
     })
+    .when('/results', {
+      templateUrl: 'views/templates/results.html',
+      controller: 'ResultsController',
+      controllerAs: 'results'
+    })
     .otherwise({
       redirectTo: '/search'
     })

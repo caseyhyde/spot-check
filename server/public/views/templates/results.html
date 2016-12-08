@@ -1,0 +1,11 @@
+</br></br></br>
+<div id="results" ng-repeat="spot in results.searchResults">
+  <h4>{{spot.spotName}}</h4>
+  <p>
+    {{spot.address.streetAddress}}</br>
+    {{spot.address.city}},
+    {{spot.address.state}}
+    {{spot.address.zip}}</br>
+    {{spot.details.notes}}
+  </p>
+</div>

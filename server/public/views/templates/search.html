@@ -4,16 +4,6 @@
       placeholder="Zip"/>
     <input ng-model="search.searchFields.keywords" class="col-xs-9" type="text"
       placeholder="Keywords"/>
-    <button ng-click="search.searchSpots()">Search Zip</button></br>
+    <button ng-click="search.searchSpots()">Search</button></br>
   </form></br></br></br></br>
-  <div id="results" ng-repeat="spot in search.searchResults">
-    <h4>{{spot.spotName}}</h4>
-    <p>
-      {{spot.address.streetAddress}}</br>
-      {{spot.address.city}},
-      {{spot.address.state}}
-      {{spot.address.zip}}</br>
-      {{spot.details.notes}}
-    </p>
-  </div>
 </div>

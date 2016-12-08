@@ -31,14 +31,20 @@ router.get('/', function(req, res) {
       if(err) {
         console.log("Query error searching database: ", err);
         res.sendStatus(500);
+        keywords = undefined;
+        zip = undefined;
       } else {
         console.log(spots);
         if(spots == null) { //if no spots are found matching that zipcode:
           console.log("There are no spots with the zipcode: ", searchTerms);
           res.sendStatus(403);
+          keywords = undefined;
+          zip = undefined;
         } else {
           console.log("Found these matches in the db: ", spots);
           res.send(spots);
+          keywords = undefined;
+          zip = undefined;
         }
       }
     });
@@ -78,14 +84,20 @@ router.get('/', function(req, res) {
       if(err) {
         console.log("Query error searching database: ", err);
         res.sendStatus(500);
+        keywords = undefined;
+        zip = undefined;
       } else {
         console.log(spots);
         if(spots == null) { //if no spots are found matching that zipcode:
           console.log("There are no spots with the zipcode: ", searchTerms);
           res.sendStatus(403);
+          keywords = undefined;
+          zip = undefined;
         } else {
           console.log("Found these matches in the db: ", spots);
           res.send(spots);
+          keywords = undefined;
+          zip = undefined;
         }
       }
     });
@@ -106,14 +118,20 @@ router.get('/', function(req, res) {
       if(err) {
         console.log("Query error searching database: ", err);
         res.sendStatus(500);
+        keywords = undefined;
+        zip = undefined;
       } else {
         console.log(spots);
         if(spots == null) { //if no spots are found matching that zipcode:
           console.log("There are no spots with the zipcode: ", searchTerms);
           res.sendStatus(403);
+          keywords = undefined;
+          zip = undefined;
         } else {
           console.log("Found these matches in the db: ", spots);
           res.send(spots);
+          keywords = undefined;
+          zip = undefined;
         }
       }
     });
@@ -126,14 +144,20 @@ router.get('/', function(req, res) {
       if(err) {
         console.log("Query error searching database: ", err);
         res.sendStatus(500);
+        keywords = undefined;
+        zip = undefined;
       } else {
         console.log(spots);
         if(spots == null) { //if no spots are found matching that zipcode:
           console.log("There are no spots with the zipcode: ", searchTerms);
           res.sendStatus(403);
+          keywords = undefined;
+          zip = undefined;
         } else {
           console.log("Found these matches in the db: ", spots);
           res.send(spots);
+          keywords = undefined;
+          zip = undefined;
         }
       }
     });
