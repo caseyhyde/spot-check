@@ -10,8 +10,9 @@ var newSpotSchema = new Schema({ //var newSpot is a new Mongoose Schema
     zip: {type: Number, required: true}
   },
   details: {//details stored as subdocument
-    notes: {type: String, lowercase: true}
-    // keywords: [{type: String, lowercase: true}]//keywords are
+    notes: {type: String, lowercase: true},
+    keywords: {type: String, lowercase: true}
+    //keywords are
     // //an array of lowercase strings to enable searching
   }
 });//End Schema

@@ -8,10 +8,15 @@ spotCheckApp.config(['$routeProvider', function($routeProvider) {
       controller: 'SearchController',
       controllerAs: 'search'
     })
-    .when('/addspot', {
+    .when('/add', {
       templateUrl: '/views/templates/addspot.html',
-      controller: 'AddSpotController',
+      controller: 'AddController',
       controllerAs: 'add'
+    })
+    .when('/review', {
+      templateUrl: '/views/templates/review.html',
+      controller: 'ReviewController',
+      controllerAs: 'review'
     })
     .otherwise({
       redirectTo: '/search'

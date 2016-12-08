@@ -1,5 +1,5 @@
-spotCheckApp.controller('AddSpotController', ['$http', 'SpotFactory', function($http, SpotFactory) {
-  console.log('Add a Spot controller is running');
+spotCheckApp.controller('AddController', ['SpotFactory', function(SpotFactory) {
+  console.log('Add Controller is running');
   var self = this;
 
   self.newSpot = {
@@ -14,10 +14,17 @@ spotCheckApp.controller('AddSpotController', ['$http', 'SpotFactory', function($
     }
   };
 
+  populateFields();
+
+  function populateFields() {
+    self.newSpot = SpotFactory.spotData;
+    console.log(SpotFactory);
+  }
+
   self.reviewSpot = function() {
-    event.preventDefault();
+    // event.preventDefault();
     SpotFactory.setSpotData(self.newSpot);
-    SpotFactory.addSpot();
+    // SpotFactory.addSpot();
   }
 
 

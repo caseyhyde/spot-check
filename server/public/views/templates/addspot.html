@@ -6,8 +6,8 @@
     <input ng-model="add.newSpot.address.state" id="state" type="text" class="form-control" placeholder="State">
     <input ng-model="add.newSpot.address.zip" id="zip" type="text" class="form-control" placeholder="Zip">
     <input ng-model="add.newSpot.details.notes" id="zip" type="text" class="form-control" placeholder="Notes">
-    <button ng-click="add.reviewSpot()">Review</button>
   </form>
+  <a ng-click="add.reviewSpot()" href="#review">Review</a>
   <div id="formTestDiv">
     <h3>From info: </br></h3>
     <p>{{add.newSpot.spotName}}</br>{{add.newSpot.address.streetAddress}}</br>

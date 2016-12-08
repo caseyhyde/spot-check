@@ -1,8 +1,10 @@
 <div>
   <form class="col-xs-9">
     <input ng-model="search.searchFields.zip" class="col-xs-9" type="text"
-      placeholder="Zipcode"/>
-    <button ng-click="search.searchSpots()">Search Spots</button>
+      placeholder="Zip"/>
+    <input ng-model="search.searchFields.keywords" class="col-xs-9" type="text"
+      placeholder="Keywords"/>
+    <button ng-click="search.searchSpots()">Search Zip</button></br>
   </form></br></br></br></br>
   <div id="results" ng-repeat="spot in search.searchResults">
     <h4>{{spot.spotName}}</h4>

@@ -1,23 +1,24 @@
 spotCheckApp.factory('SpotFactory', ['$http', function($http) {
 
-  var spotData = {};
+
 
   var spot = {
 
+    spotData: {},
 
     setSpotData: function(newSpotData) {
-      spotData = newSpotData
-      console.log(spotData);
+      spot.spotData = newSpotData
     },
 
 
     addSpot: function() {
-      $http({
+      return $http({
         method: 'POST',
         url: '/addSpot',
-        data: spotData,
+        data: spot.spotData,
       }).then(function() {
         console.log('New spot added to db successfully!');
+        spot.spotData = {};
       }).catch(function(err) {
         console.log('POST error sending new spot to server: ', err);
       });
