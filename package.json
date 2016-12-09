@@ -6,6 +6,7 @@
   "dependencies": {
     "angular": "^1.5.9",
     "angular-route": "^1.5.9",
+    "angular-ui-bootstrap": "^2.3.0",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
     "express": "^4.14.0",
