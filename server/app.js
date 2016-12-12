@@ -14,6 +14,7 @@ var port = process.env.PORT || 3000;
 
 app.use(express.static('server/public'));
 app.use(bodyParser.json());//use body parser on all requests
+// app.use(multer);
 
 
 app.get('/', function(req, res) {

@@ -1,5 +1,4 @@
-spotCheckApp.controller('AddController', ['SpotFactory', '$http',
-  'multipartForm', function(SpotFactory, $http, multipartForm) {
+spotCheckApp.controller('AddController', ['SpotFactory', '$http', function(SpotFactory, $http, multipartForm) {
   console.log('Add Controller is running');
   var self = this;
 
@@ -23,21 +22,8 @@ spotCheckApp.controller('AddController', ['SpotFactory', '$http',
   }
 
   self.reviewSpot = function() {
-    console.log("File: ", self.newSpot.myFile);
-
-    // event.preventDefault();
-    setImage();
+    console.log("add.newSpot.file: ", self.newSpot.file);
     SpotFactory.setSpotData(self.newSpot);
-    // SpotFactory.addSpot();
-  }
-
-  function setImage() {
-    var file = self.newSpot.myFile;
-    var reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function(e) {
-      self.newSpot.ImageSrc = e.target.result;
-    }
   }
 
 

@@ -1,26 +1,29 @@
 var express = require('express');
 var router = express.Router();
 var Spot = require('../models/newSpot');
-var S3FS = require('s3fs');
-var multiparty = require('connect-multiparty');
-var multipartyMiddleware = multiparty();
-
+var multer = require('multer');
+var upload = multer({dest: './uploads/'});
+// var S3FS = require('s3fs');
+// var multiparty = require('connect-multiparty');
+// var multipartyMiddleware = multiparty();
+//
 
 
 /***********************************/
             //S3FS
 
-router.use(multipartyMiddleware);
+// router.use(multipartyMiddleware);
+//
+// var s3fs = new S3FS('caseystestupload12345', {
+//   accessKeyId: 'AKIAIJD6BUHKG6YSZRIA',
+//   secretAccessKey: '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'
+// });
 
-var s3fs = new S3FS('caseystestupload12345', {
-  accessKeyId: 'AKIAIJD6BUHKG6YSZRIA',
-  secretAccessKey: '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'
-});
-
-router.post('/test', function(req, res) {
+router.post('/test', upload.single('file'), function(req, res, next) {
   console.log('test file post route hit');
-
-  console.log(req.files);
+  console.log("Req.body: ", req.body);
+  console.log("Req.file: ", req.file);
+  res.json({success: true});
 });//end test route
 
 
