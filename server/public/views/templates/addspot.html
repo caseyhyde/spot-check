@@ -6,9 +6,11 @@
     <input ng-model="add.newSpot.address.state" id="state" type="text" class="form-control" placeholder="State">
     <input ng-model="add.newSpot.address.zip" id="zip" type="text" class="form-control" placeholder="Zip">
     <input ng-model="add.newSpot.details.notes" id="zip" type="text" class="form-control" placeholder="Notes">
-  </form>
+    <input type="file" file-model="add.newSpot.myFile"/>
   <a ng-click="add.reviewSpot()" href="#review">Review</a>
   <div id="formTestDiv">
+    <button ng-click="add.setImage()">Preview Image</button>
+    <img ng-src="{{add.newSpot.ImageSrc}}" />
     <h3>From info: </br></h3>
     <p>{{add.newSpot.spotName}}</br>{{add.newSpot.address.streetAddress}}</br>
     {{add.newSpot.address.city}}</br>{{add.newSpot.address.state}}</br>{{add.newSpot.address.zip}}</p>
