@@ -3,6 +3,7 @@ function(SpotFactory, $location) {
   console.log('Review Controller is running!');
 
   var self = this;
+  self.spotData = {};
 
   getSpotData();
 
@@ -13,9 +14,7 @@ function(SpotFactory, $location) {
   }
 
   self.confirmSpot = function() {
-    SpotFactory.submitSpot();
-    // .then($location.path('/search'));
-    self.spotData = {};
+    SpotFactory.submitSpot().then($location.path('/search'));
   }
 
 

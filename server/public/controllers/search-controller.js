@@ -1,5 +1,6 @@
-spotCheckApp.controller('SearchController', ['$http', 'SearchFactory', '$location',
- function($http, SearchFactory, $location) {
+spotCheckApp.controller('SearchController', ['$http', 'SearchFactory',
+'$location', 'SpotFactory',
+function($http, SearchFactory, $location, SpotFactory) {
   console.log('Search controller is running');
 
   var self = this;
@@ -7,7 +8,13 @@ spotCheckApp.controller('SearchController', ['$http', 'SearchFactory', '$locatio
   self.searchFields = {};
   self.searchResults = [];
 
-
+/****************************************
+Empty spot object in SpotFactory, should
+user be coming from adding a spot
+*****************************************/
+  (function clearSpotFactory() {
+    SpotFactory.clearSpotData();
+  })();
 
 
   function updateFactoryFields() {

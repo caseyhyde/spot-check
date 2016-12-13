@@ -5,24 +5,21 @@ spotCheckApp.controller('AddController', ['SpotFactory', '$http', function(SpotF
 
   self.newSpot = {
     spotName: "",
-    address: {
-      streetAddress: "",
-      city: "",
-      state: ""
-    },
-    details: {
-      notes: "",
-    }
+    streetAddress: "",
+    city: "",
+    state: "",
+    notes: ""
   };
 
   populateFields();
 
-  function populateFields() {
+  function populateFields() { //populate fields with data already
+    //in new-spot-factory. Needed for going review-controller => add-controller
     self.newSpot = SpotFactory.spotData;
   }
 
   self.reviewSpot = function() {
-    console.log("add.newSpot.file: ", self.newSpot.file);
+    console.log("add.newSpot.file: ", self.newSpot);
     SpotFactory.setSpotData(self.newSpot);
   }
 

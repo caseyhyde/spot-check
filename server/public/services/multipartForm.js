@@ -3,9 +3,9 @@ spotCheckApp.service('multipartForm', ['$http', function($http) {
     var fd = new FormData();
     for(var key in data) //
       fd.append(key, data[key]);
-    $http.post(uploadUrl, fd, { //this is a configuration for the POST
+    return $http.post(uploadUrl, fd, { //this is a configuration for the POST
       transformRequest: angular.indentity, //stops angular from serializing our data
       headers: { 'Content-Type': undefined } //lets browser handle what type of data is being sent...
     });
   };//end this.post function expression
-}])
+}]);

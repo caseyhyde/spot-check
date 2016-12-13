@@ -12,30 +12,38 @@ spotCheckApp.factory('SpotFactory', ['$http', 'multipartForm', function($http,
       setImage(); //This is done just for a preview...
     },
 
-    // addSpot: function() {
-    //   return $http({
-    //     method: 'POST',
-    //     url: '/addSpot',
-    //     data: spot.spotData,
-    //   }).then(function() {
-    //     console.log('New spot added to db successfully!');
-    //     spot.spotData = {};
-    //   }).catch(function(err) {
-    //     console.log('POST error sending new spot to server: ', err);
-    //   });
-    // },
+    clearSpotData: function() {
+      spot.spotData = {};
+      spot.image = "";
+    },
+
+    addSpot: function() {
+      return $http({
+        method: 'POST',
+        url: '/addSpot',
+        data: spot.spotData,
+      }).then(function() {
+        console.log('New spot added to db successfully!');
+        spot.spotData = {};
+      }).catch(function(err) {
+        console.log('POST error sending new spot to server: ', err);
+      });
+    },
 
 
     submitSpot: function() {
       console.log("submit function hit");
       console.log(spot.spotData);
       var uploadUrl = '/addSpot/test';
-      multipartForm.post(uploadUrl, spot.spotData);
+
+      return multipartForm.post(uploadUrl, spot.spotData);
     }
 
 
 
   } //end spot object
+
+  return spot;
 
   //convert image file to base64 to display preview
   function setImage() {
@@ -46,7 +54,5 @@ spotCheckApp.factory('SpotFactory', ['$http', 'multipartForm', function($http,
       spot.image = e.target.result;
     }
   }
-
-  return spot;
 
 }]);
