@@ -42,6 +42,7 @@ spotCheckApp.factory('SpotFactory', ['$http', 'multipartForm', function($http,
     reader.readAsDataURL(file);
     reader.onload = function(e) {
       spot.image.base64 = e.target.result;
+      console.log("File reader finished...");
     }
   }
 
