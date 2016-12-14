@@ -9,6 +9,7 @@ spotCheckApp.controller('AddController', ['SpotFactory', '$http',
     city: "",
     state: "",
     notes: ""
+    //files: [FileList]
   };
 
   populateFields();
@@ -21,6 +22,7 @@ spotCheckApp.controller('AddController', ['SpotFactory', '$http',
 
   self.reviewSpot = function() {
     console.log("Spot data being sent to new-spot-factory: ", self.newSpot);
+    console.log("newSpot.files.length: ", self.newSpot.files.length);
     SpotFactory.setSpotData(self.newSpot);
     $location.path('/review');
   }

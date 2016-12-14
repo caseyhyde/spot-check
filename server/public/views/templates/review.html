@@ -1,13 +1,13 @@
-<h1>Reveiw Page!</h1>
-<button><a href="#add">Back to Edit</a></button>
-
+</br></br><h1>Reveiw Page!</h1>
 <div>
   <h1>Review Spot</h1>
   <h3>{{review.spotData.spotName}}</h3></br>
-  <p>{{review.spotData.address.streetAddress}}</p>
-  <p>{{review.spotData.address.city}} </p>
-  <p>{{review.spotData.address.state}}</p></br>
-  <p>{{review.spotData.details.notes}}</p>
+  <p>{{review.spotData.streetAddress}}</p>
+  <p>{{review.spotData.city}} </p>
+  <p>{{review.spotData.state}}</p>
+  <p>{{review.spotData.zip}}</p></br>
+  <p>{{review.spotData.notes}}</p>
   <img ng-src="{{review.image.base64}}" />
 </div>
 <button ng-click="review.confirmSpot()">Confirm</button>
+<button><a href="#add">Back to Edit</a></button>

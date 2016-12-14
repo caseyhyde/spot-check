@@ -4,15 +4,13 @@ spotCheckApp.factory('SpotFactory', ['$http', 'multipartForm', function($http,
   var spot = {
 
     spotData: {},
-    image: {
-      base64: "",
 
-    },
+
 
     setSpotData: function(newSpotData) {
-      spot.spotData = newSpotData;
-      createImage();
-      // setImage(); //This is done just for a preview...
+      spot.spotData = newSpotData; //this will have all spot data including file blobs in an array called .files
+      createImages(newSpotData.files); //sends spot data to create images function
+      //to create base64 and new Image properties
     },
 
     clearSpotData: function() {
@@ -36,26 +34,40 @@ spotCheckApp.factory('SpotFactory', ['$http', 'multipartForm', function($http,
   return spot;
 
   //convert image file to base64 to display preview
-  function setImage() {
-    var file = spot.spotData.file;
+  function formatData(image, i) {
+    console.log("Running make base64() on ", image);
     var reader = new FileReader();
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(image);
     reader.onload = function(e) {
-      spot.image.base64 = e.target.result;
+      console.log("Reader on load happened!");
+      spot.images = {};
+      spot.images["image" + i] = {};
+      spot.images["image" + i].base64 = e.target.result;
+      makeNewImage(image, i);
+      console.log("spot.images after makeBase64(): ", spot.images);
     }
   }
 
-  //create a new Image to determine width and height of image
-  function createImage() {
-    setImage();
-
+  function makeNewImage(image, i) {
     var _URL = window.URL || window.webkitURL;
-    spot.image.image = new Image();
-    spot.image.image.onload = function() {
-      alert(this.width + " " + this.height);
+    spot.images["image" + i].newImage = new Image();
+    spot.images["image" + i].newImage.onload = function() {
+      alert("width: " + this.width + " " + "Height: " + this.height);
     };
-    spot.image.image.src = _URL.createObjectURL(spot.spotData.file);
-    console.log("createImage() function hit in new-spot-factory. spot.image: ", spot.image);
+    spot.images["image" + i].src = _URL.createObjectURL(image);
+    console.log("createImage() function hit in new-spot-factory. spot.image: " );
+  }
+
+  //create a new Image to determine width and height of image
+  function createImages(images) {
+    console.log("Images: ", images);
+
+    for(var i = 0; i < images.length; i++) { //loop through all images
+      var currentImage = images[i]; //create variable for current img
+      formatData(currentImage, i); //run that image through setImage to
+      //create base64
+
+    }
   }
 
 }]);
