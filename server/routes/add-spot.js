@@ -2,20 +2,69 @@ var express = require('express');
 var router = express.Router();
 var Spot = require('../models/newSpot');
 var multer = require('multer');
-var upload = multer({dest: './uploads/'});
 var aws = require('aws-sdk');
-var multers3 = require('multer-s3');
+var multerS3 = require('multer-s3');
+var uuid = require('../modules/uuid-creator');
 
-// var s3 = new aws.s3( {} );
+aws.config.update({
+  secretAccessKey: 'YV/ePzoxfrPTETyHcZbujrefAoLrTn12Skvh5Vj/',
+  accessKeyId: 'AKIAJNEANSHSONPBXC5Q',
+  region: 'us-east-2'
+});
 
+var s3 = new aws.S3();
 
+/*********************************
+Create new uuid
+**********************************/
+var currentKey = "";
+var currentBucket = "";
+
+function newKey() {
+  console.log("New Key fxn called");
+  currentKey = uuid();
+  return currentKey;
+}
+
+function newBucket() {
+  console.log("New Bucket fxn called");
+  currentBucket = uuid();
+  return currentBucket;
+}
+/*********************************
+Set multer to upload to AWS S3
+instead of local storage
+**********************************/
+var upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: function(req, file, cb) {
+      // currentBucket = newBucket()
+      // s3.createBucket({Bucket: currentBucket},
+      function() {
+        cb(null, currentBucket);
+      });
+    },
+    key: function(req, file, cb) {
+      // var currentKey = newKey();
+      cb(null, currentKey);
+    }
+  })
+});
 
 router.post('/test', upload.single('file'), function(req, res, next) {
+
   console.log('test file post route hit');
   console.log("Req.body: ", req.body);
   console.log("Req.file: ", req.file);
+  var spot = req.body;
+  spot.imageLocation = {
+    bucket: currentBucket,
+    key: currentKey
+  };
+  console.log("spot with image location: ", spot);
 
-  var newSpot = new Spot(req.body);
+  var newSpot = new Spot(spot);
 
   newSpot.save(function(err, data) {
     if(err) {

@@ -16,6 +16,7 @@
     "mongoose": "^4.7.1",
     "multer": "^1.2.0",
     "multer-s3": "^2.5.0",
+    "node-uuid": "^1.4.7",
     "s3fs": "git+https://github.com/RiptideElements/s3fs.git"
   },
   "devDependencies": {},

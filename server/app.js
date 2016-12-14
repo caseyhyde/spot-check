@@ -16,10 +16,10 @@ app.use(express.static('server/public'));
 app.use(bodyParser.json());//use body parser on all requests
 // app.use(multer);
 
-app.use(function(req, res, next) {
-  console.log("start req.body", req.body);
-  next();
-});
+// app.use(function(req, res, next) {
+//   console.log("start req.body", req.body);
+//   next();
+// });
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, './public/views/index.html'));
 });//Send index.html on page load

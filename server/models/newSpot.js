@@ -7,7 +7,8 @@ var newSpotSchema = new Schema({ //var newSpot is a new Mongoose Schema
   city: {type: String, lowercase: true, required: true},
   state: {type: String, lowercase: true, required: true},
   zip: {type: Number, required: true},
-  notes: {type: String, lowercase: true}
+  notes: {type: String, lowercase: true},
+  imageLocation: Object
 });//End Schema
 
 var newSpot = mongoose.model('Spot', newSpotSchema);

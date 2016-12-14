@@ -9,9 +9,15 @@ function(SpotFactory, $location) {
 
   function getSpotData() { //Get spot data from SpotFactory
     self.spotData = SpotFactory.spotData;
-    self.image = SpotFactory.image;
+    self.images = SpotFactory.images;
     console.log("spotData: ", self.spotData);
+    console.log("Images: ", self.images);
   }
+
+  // function loadImage() {
+  //   self.images = SpotFactory.images;
+  //   if()
+  // }
 
   self.confirmSpot = function() {
     SpotFactory.submitSpot().then($location.path('/search'));

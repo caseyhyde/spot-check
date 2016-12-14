@@ -25,6 +25,7 @@ user be coming from adding a spot
     updateFactoryFields();
     SearchFactory.searchSpots().then(function(data) {
       SearchFactory.updateFactoryResults(data);
+      console.log("location: ", $location);
       $location.path('/results');
     })
   };

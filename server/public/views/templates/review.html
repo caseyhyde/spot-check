@@ -8,6 +8,6 @@
   <p>{{review.spotData.address.city}} </p>
   <p>{{review.spotData.address.state}}</p></br>
   <p>{{review.spotData.details.notes}}</p>
-  <img ng-src="{{review.image}}" />
+  <img ng-src="{{review.images.base64}}" />
 </div>
 <button ng-click="review.confirmSpot()">Confirm</button>

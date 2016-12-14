@@ -1,7 +1,7 @@
-spotCheckApp.controller('AddController', ['SpotFactory', '$http', function(SpotFactory, $http, multipartForm) {
+spotCheckApp.controller('AddController', ['SpotFactory', '$http',
+'$location', function(SpotFactory, $http, $location) {
   console.log('Add Controller is running');
   var self = this;
-
 
   self.newSpot = {
     spotName: "",
@@ -19,8 +19,9 @@ spotCheckApp.controller('AddController', ['SpotFactory', '$http', function(SpotF
   }
 
   self.reviewSpot = function() {
-    console.log("add.newSpot.file: ", self.newSpot);
+    console.log("add.newSpot.files: ", self.newSpot.files);
     SpotFactory.setSpotData(self.newSpot);
+    $location.path('/review');
   }
 
 
