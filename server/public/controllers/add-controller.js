@@ -24,7 +24,6 @@ spotCheckApp.controller('AddController', ['SpotFactory', '$http',
     console.log("Spot data being sent to new-spot-factory: ", self.newSpot);
     console.log("newSpot.files.length: ", self.newSpot.files.length);
     SpotFactory.setSpotData(self.newSpot);
-    $location.path('/review');
   }
 
 

@@ -5,11 +5,11 @@ function(SpotFactory, $location) {
   var self = this;
   self.spotData = {};
 
-  getSpotData();
+  setTimeout(getSpotData, 2000);
 
   function getSpotData() { //Get spot data from SpotFactory
     self.spotData = SpotFactory.spotData;
-    self.image = SpotFactory.images;
+    self.images = SpotFactory.images;
     console.log("Spot data received from new-spot-factory: ", self.spotData);
     console.log("Image data received from new-spot-factory: ", self.images);
   }
