@@ -9,9 +9,9 @@ function(SpotFactory, $location) {
 
   function getSpotData() { //Get spot data from SpotFactory
     self.spotData = SpotFactory.spotData;
-    self.images = SpotFactory.images;
-    console.log("spotData: ", self.spotData);
-    console.log("Images: ", self.images);
+    self.image = SpotFactory.image;
+    console.log("Spot data received from new-spot-factory: ", self.spotData);
+    console.log("Image data received from new-spot-factory: ", self.image);
   }
 
   // function loadImage() {

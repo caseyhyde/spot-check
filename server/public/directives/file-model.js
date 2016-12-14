@@ -6,8 +6,8 @@ spotCheckApp.directive('fileModel', ['$parse', function($parse) {
       var modelSetter = model.assign;
       element.bind('change', function() { //when element changes, execute this function
         scope.$apply(function() {
-          console.log("element: ", element[0].files);
-          modelSetter(scope, element[0].files);
+          console.log("Images selected: ", element[0].files[0]);
+          modelSetter(scope, element[0].files[0]);
         });
       });
     }

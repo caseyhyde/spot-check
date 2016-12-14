@@ -4,7 +4,7 @@ spotCheckApp.factory('SpotFactory', ['$http', 'multipartForm', function($http,
   var spot = {
 
     spotData: {},
-    images: {
+    image: {
       base64: "",
 
     },
@@ -18,19 +18,6 @@ spotCheckApp.factory('SpotFactory', ['$http', 'multipartForm', function($http,
     clearSpotData: function() {
       spot.spotData = {};
       spot.image = "";
-    },
-
-    addSpot: function() {
-      return $http({
-        method: 'POST',
-        url: '/addSpot',
-        data: spot.spotData,
-      }).then(function() {
-        console.log('New spot added to db successfully!');
-        spot.spotData = {};
-      }).catch(function(err) {
-        console.log('POST error sending new spot to server: ', err);
-      });
     },
 
 
@@ -50,11 +37,11 @@ spotCheckApp.factory('SpotFactory', ['$http', 'multipartForm', function($http,
 
   //convert image file to base64 to display preview
   function setImage() {
-    var file = spot.spotData.files[0];
+    var file = spot.spotData.file;
     var reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function(e) {
-      spot.images.base64 = e.target.result;
+      spot.image.base64 = e.target.result;
     }
   }
 
@@ -63,12 +50,12 @@ spotCheckApp.factory('SpotFactory', ['$http', 'multipartForm', function($http,
     setImage();
 
     var _URL = window.URL || window.webkitURL;
-    spot.images.image = new Image();
-    spot.images.image.onload = function() {
+    spot.image.image = new Image();
+    spot.image.image.onload = function() {
       alert(this.width + " " + this.height);
     };
-    spot.images.image.src = _URL.createObjectURL(spot.spotData.files[0]);
-    console.log("spot.image: ", spot.images);
+    spot.image.image.src = _URL.createObjectURL(spot.spotData.file);
+    console.log("createImage() function hit in new-spot-factory. spot.image: ", spot.image);
   }
 
 }]);

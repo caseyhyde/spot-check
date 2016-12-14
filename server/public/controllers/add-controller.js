@@ -15,11 +15,12 @@ spotCheckApp.controller('AddController', ['SpotFactory', '$http',
 
   function populateFields() { //populate fields with data already
     //in new-spot-factory. Needed for going review-controller => add-controller
+    console.log("Populating fields from new-spot-factory.");
     self.newSpot = SpotFactory.spotData;
   }
 
   self.reviewSpot = function() {
-    console.log("add.newSpot.files: ", self.newSpot.files);
+    console.log("Spot data being sent to new-spot-factory: ", self.newSpot);
     SpotFactory.setSpotData(self.newSpot);
     $location.path('/review');
   }

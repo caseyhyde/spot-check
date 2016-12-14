@@ -39,14 +39,15 @@ var upload = multer({
   storage: multerS3({
     s3: s3,
     bucket: function(req, file, cb) {
-      // currentBucket = newBucket()
-      // s3.createBucket({Bucket: currentBucket},
+      console.log("This is happening inside of the multerS3 bucket");
+      currentBucket = newBucket()
+      s3.createBucket({Bucket: currentBucket},
       function() {
         cb(null, currentBucket);
       });
     },
     key: function(req, file, cb) {
-      // var currentKey = newKey();
+      var currentKey = newKey();
       cb(null, currentKey);
     }
   })
