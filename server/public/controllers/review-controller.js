@@ -1,17 +1,18 @@
 spotCheckApp.controller('ReviewController', ['SpotFactory', '$location',
-function(SpotFactory, $location) {
+'$rootScope', function(SpotFactory, $location, $rootScope) {
   console.log('Review Controller is running!');
 
   var self = this;
   self.spotData = {};
 
-  setTimeout(getSpotData, 2000);
+  getSpotData();
 
   function getSpotData() { //Get spot data from SpotFactory
     self.spotData = SpotFactory.spotData;
     self.images = SpotFactory.images;
     console.log("Spot data received from new-spot-factory: ", self.spotData);
     console.log("Image data received from new-spot-factory: ", self.images);
+    // $location.path('/review');
   }
 
   // function loadImage() {

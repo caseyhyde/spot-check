@@ -24,6 +24,7 @@ spotCheckApp.factory('SpotFactory', ['$http', 'multipartForm', '$location',
       console.log("submit function hit");
       console.log(spot.spotData);
       var uploadUrl = '/addSpot/test';
+      console.log("Sending this data to the server: ", spot.spotData);
 
       return multipartForm.post(uploadUrl, spot.spotData);
     }
@@ -45,8 +46,9 @@ spotCheckApp.factory('SpotFactory', ['$http', 'multipartForm', '$location',
       spot.images["image" + i].base64 = e.target.result;
       // makeNewImage(image, i);
       console.log("spot.images after formatData(): ", spot.images);
-      $location.path('/review');
-      $rootScope.$apply();
+      // alert("click me");
+      // $location.path('/review');
+      // $rootScope.$apply();
 
     }
   }

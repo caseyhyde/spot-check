@@ -38,7 +38,7 @@ instead of local storage
 var upload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: function(req, file, cb) {
+    bucket: function(req, files, cb) {
       console.log("This is happening inside of the multerS3 bucket");
       currentBucket = newBucket()
       s3.createBucket({Bucket: currentBucket},
@@ -46,7 +46,7 @@ var upload = multer({
         cb(null, currentBucket);
       });
     },
-    key: function(req, file, cb) {
+    key: function(req, files, cb) {
       var currentKey = newKey();
       cb(null, currentKey);
     }
@@ -57,7 +57,7 @@ router.post('/test', upload.single('file'), function(req, res, next) {
 
   console.log('test file post route hit');
   console.log("Req.body: ", req.body);
-  console.log("Req.file: ", req.file);
+  console.log("Req.files: ", req.file);
   var spot = req.body;
   spot.imageLocation = {
     bucket: currentBucket,
