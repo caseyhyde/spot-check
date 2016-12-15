@@ -35,29 +35,29 @@ function newBucket() {
 Set multer to upload to AWS S3
 instead of local storage
 **********************************/
-var upload = multer({dest: 'uploads/' });
-//   storage: multerS3({
-//     s3: s3,
-//     bucket: function(req, file, cb) {
-//       console.log("This is happening inside of the multerS3 bucket");
-//       currentBucket = newBucket()
-//       s3.createBucket({Bucket: currentBucket},
-//       function() {
-//         cb(null, currentBucket);
-//       });
-//     },
-//     key: function(req, file, cb) {
-//       var currentKey = newKey();
-//       cb(null, currentKey);
-//     }
-//   })
-// });
+var upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: function(req, file, cb) {
+      console.log("This is happening inside of the multerS3 bucket");
+      currentBucket = newBucket()
+      s3.createBucket({Bucket: currentBucket},
+      function() {
+        cb(null, currentBucket);
+      });
+    },
+    key: function(req, file, cb) {
+      var currentKey = newKey();
+      cb(null, currentKey);
+    }
+  })
+});
 
-router.post('/test', upload.array('file', 2), function(req, res, next) {
+router.post('/test', upload.single('file'), function(req, res, next) {
 
   console.log('test file post route hit');
   console.log("Req.body: ", req.body);
-  console.log("Req.file: ", req.files);
+  console.log("Req.file: ", req.file);
   var spot = req.body;
   spot.imageLocation = {
     bucket: currentBucket,
