@@ -11,7 +11,7 @@ spotCheckApp.factory('SpotFactory', ['$http', 'multipartForm', function($http,
 
     setSpotData: function(newSpotData) {
       spot.spotData = newSpotData;
-      setImage();
+      // setImage();
       // setImage(); //This is done just for a preview...
     },
 
@@ -25,6 +25,7 @@ spotCheckApp.factory('SpotFactory', ['$http', 'multipartForm', function($http,
       console.log("submit function hit");
       console.log(spot.spotData);
       var uploadUrl = '/addSpot/test';
+      console.log("Sending this data to the server: ", spot.spotData);
 
       return multipartForm.post(uploadUrl, spot.spotData);
     }
