@@ -11,7 +11,7 @@ spotCheckApp.factory('SpotFactory', ['$http', 'multipartForm', function($http,
 
     setSpotData: function(newSpotData) {
       spot.spotData = newSpotData;
-      createImage();
+      setImage();
       // setImage(); //This is done just for a preview...
     },
 
@@ -47,16 +47,16 @@ spotCheckApp.factory('SpotFactory', ['$http', 'multipartForm', function($http,
   }
 
   //create a new Image to determine width and height of image
-  function createImage() {
-    setImage();
-
-    var _URL = window.URL || window.webkitURL;
-    spot.image.image = new Image();
-    spot.image.image.onload = function() {
-      alert(this.width + " " + this.height);
-    };
-    spot.image.image.src = _URL.createObjectURL(spot.spotData.file);
-    console.log("createImage() function hit in new-spot-factory. spot.image: ", spot.image);
-  }
+  // function createImage() {
+  //   setImage();
+  //
+  //   var _URL = window.URL || window.webkitURL;
+  //   spot.image.image = new Image();
+  //   spot.image.image.onload = function() {
+  //     alert(this.width + " " + this.height);
+  //   };
+  //   spot.image.image.src = _URL.createObjectURL(spot.spotData.file);
+  //   console.log("createImage() function hit in new-spot-factory. spot.image: ", spot.image);
+  // }
 
 }]);
