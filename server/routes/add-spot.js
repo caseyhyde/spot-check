@@ -53,11 +53,11 @@ var upload = multer({dest: 'uploads/'});
 //   })
 // });
 
-router.post('/test', upload.single('_file', 5), function(req, res, next) {
+router.post('/test', upload.any(), function(req, res, next) {
 
   console.log('test file post route hit');
   console.log("Req.body: ", req.body);
-  console.log("Req: ", req);
+  console.log("Req: ", req.files);
   var spot = req.body;
   spot.imageLocation = {
     bucket: currentBucket,
