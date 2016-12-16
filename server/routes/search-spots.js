@@ -25,7 +25,7 @@ router.get('/', function(req, res) {
   }
 
   function findAll() {
-    console.log("Searching without Zipcode");
+    console.log("Searching all");
     Spots.find( {},
       function(err, spots) {
       if(err) {
@@ -72,13 +72,13 @@ router.get('/', function(req, res) {
 
   function findZipAndKeywords() {
     // var keywords = new RegExp(keywords, 'i');
-    Spots.find( {$and: [{'address.zip': zip}, {$or: [
+    Spots.find( {$and: [{'zip': zip}, {$or: [
       {spotName: new RegExp(keywords, 'i')},
-      {'address.streetAddress': new RegExp(keywords, 'i')},
-      {'address.city': new RegExp(keywords, 'i')},
-      {'address.state': new RegExp(keywords, 'i')},
-      {'details.notes': new RegExp(keywords, 'i')},
-      {'destails.keywords': new RegExp(keywords, 'i')}
+      {'streetAddress': new RegExp(keywords, 'i')},
+      {'city': new RegExp(keywords, 'i')},
+      {'state': new RegExp(keywords, 'i')},
+      {'notes': new RegExp(keywords, 'i')},
+      {'keywords': new RegExp(keywords, 'i')}
     ]}]},
       function(err, spots) {
       if(err) {
@@ -108,11 +108,11 @@ router.get('/', function(req, res) {
     // var keywords = new RegExp(keywords, 'i');
     Spots.find( {$or: [
       {spotName: new RegExp(keywords, 'i')},
-      {'address.streetAddress': new RegExp(keywords, 'i')},
-      {'address.city': new RegExp(keywords, 'i')},
-      {'address.state': new RegExp(keywords, 'i')},
-      {'details.notes': new RegExp(keywords, 'i')},
-      {'destails.keywords': new RegExp(keywords, 'i')}
+      {'streetAddress': new RegExp(keywords, 'i')},
+      {'city': new RegExp(keywords, 'i')},
+      {'state': new RegExp(keywords, 'i')},
+      {'notes': new RegExp(keywords, 'i')},
+      {'keywords': new RegExp(keywords, 'i')}
     ]},
       function(err, spots) {
       if(err) {
@@ -139,7 +139,7 @@ router.get('/', function(req, res) {
 
   function findJustZip() {
     console.log("Searching without Zipcode");
-    Spots.find( {'address.zip': zip},
+    Spots.find( {'zip': zip},
       function(err, spots) {
       if(err) {
         console.log("Query error searching database: ", err);

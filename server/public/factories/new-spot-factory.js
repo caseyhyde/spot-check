@@ -4,14 +4,12 @@ spotCheckApp.factory('SpotFactory', ['$http', 'multipartForm', function($http,
   var spot = {
 
     spotData: {},
-    image: {
-      base64: "",
-
-    },
+    images: [],
 
     setSpotData: function(newSpotData) {
       spot.spotData = newSpotData;
-      // setImage();
+      spot.images = [];
+      setImage();
       // setImage(); //This is done just for a preview...
     },
 
@@ -37,14 +35,22 @@ spotCheckApp.factory('SpotFactory', ['$http', 'multipartForm', function($http,
   return spot;
 
   //convert image file to base64 to display preview
+
+
   function setImage() {
-    var file = spot.spotData.file;
-    var reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function(e) {
-      spot.image.base64 = e.target.result;
-      console.log("File reader finished...");
+
+
+
+    for (var i = 0; i < spot.spotData.files.length; i++) {
+      var reader = new FileReader();
+      var file = spot.spotData.files[i];
+      reader.readAsDataURL(file);
+      reader.onload = function(e) {
+        spot.images.push(e.target.result)
+        console.log("File reader finished...");
+      }
     }
+
   }
 
   //create a new Image to determine width and height of image
