@@ -18,7 +18,7 @@ var s3 = new aws.S3();
 Create new uuid
 **********************************/
 var currentKey = "";
-var currentBucket = "";
+var currentBucket = "prime-spot-check-demo";
 
 function newKey() {
   console.log("New Key fxn called");
@@ -44,7 +44,8 @@ var upload = multer({
     key: function(req, file, cb) {
       var currentKey = newKey();
       cb(null, currentKey);
-    }
+    },
+    acl: 'public-read'
   })
 });
 
@@ -56,20 +57,21 @@ router.post('/test', upload.array('file', 50), function(req, res, next) {
   var spot = req.body;
   spot.imageLocation = {
     bucket: currentBucket,
-    key: currentKey
+    key: currentKey,
+    url: "https://s3.amazonaws.com/" + currentBucket + "/" + currentKey
   };
   console.log("spot with image location: ", spot);
 
-  // var newSpot = new Spot(spot);
-  //
-  // newSpot.save(function(err, data) {
-  //   if(err) {
-  //     console.log("Query error adding new spot: ", err);
-  //     res.sendStatus(500);
-  //   } else {
-  //     res.sendStatus(201);
-  //   }
-  // });//end save
+  var newSpot = new Spot(spot);
+
+  newSpot.save(function(err, data) {
+    if(err) {
+      console.log("Query error adding new spot: ", err);
+      res.sendStatus(500);
+    } else {
+      res.sendStatus(201);
+    }
+  });//end save
 
 });//end test route
 
