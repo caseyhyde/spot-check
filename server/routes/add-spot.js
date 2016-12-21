@@ -5,10 +5,11 @@ var multer = require('multer');
 var aws = require('aws-sdk');
 var multerS3 = require('multer-s3');
 var uuid = require('../modules/uuid-creator');
+var keys = require('../../credentials/env.js');
 
 aws.config.update({
-  secretAccessKey: 'YV/ePzoxfrPTETyHcZbujrefAoLrTn12Skvh5Vj/',
-  accessKeyId: 'AKIAJNEANSHSONPBXC5Q',
+  secretAccessKey: process.env.SECRET_ACCESS_KEY,
+  accessKeyId: process.env.ACCESS_KEY_ID,
   region: 'us-east-2'
 });
 
