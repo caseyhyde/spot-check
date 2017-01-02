@@ -37,7 +37,7 @@ router.get('/', function(req, res) {
     // console.log("process.env.MONGODB_URI: ", process.env.MONGODB_URI);
     // console.log("Spots: ", Spots);
     // console.log("Spots.find: ", Spots.find({}));
-    Spots.find( {},
+    Spots.findOne({},
       function(err, spots) {
       if(err) {
         console.log("Query error searching database: ", err);
