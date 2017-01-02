@@ -6,15 +6,15 @@ var mongoConnection = require('../modules/mongo-connection');
 
 mongoConnection.connect();
 
-router.get('/hold', function(req, res) {
+router.get('/', function(req, res) {
   console.log("TEST");
-  Spots.findOne({}, function(error, data) {
+  Spots.findOne({"info.zip": 999}, function(error, data) {
     console.log("error: ", error);
     console.log("data: ", data);
   });
 });
 
-router.get('/', function(req, res) {
+router.get('/hold', function(req, res) {
 
   console.log("req.headers: ", req.headers);
 
