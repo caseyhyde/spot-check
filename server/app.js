@@ -21,6 +21,12 @@ app.use(bodyParser.json());//use body parser on all requests
 //   console.log("start req.body", req.body);
 //   next();
 // });
+
+//Call the function exported as the connect property of mongo-connection
+//which connects us to our Mongo database.
+mongoConnection.connect();
+
+
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, './public/views/index.html'));
 });//Send index.html on page load
@@ -29,9 +35,6 @@ app.get('/', function(req, res) {
 app.use('/addSpot', addSpot);
 app.use('/searchSpots', searchSpots);
 
-//Call the function exported as the connect property of mongo-connection
-//which connects us to our Mongo database.
-mongoConnection.connect();
 
 
 app.listen(port, function() {
