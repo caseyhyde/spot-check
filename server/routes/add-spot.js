@@ -94,6 +94,7 @@ router.post('/test', upload.array('file', 10), function(req, res, next) {
   var newSpot = new Spot(spot);
 
   newSpot.save(function(err, data) {
+    console.log("Add spot newSpot.save: ", newSpot.save());
     if(err) {
       console.log("Query error adding new spot: ", err);
       res.sendStatus(500);
