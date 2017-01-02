@@ -72,13 +72,13 @@ router.get('/', function(req, res) {
 
   function findZipAndKeywords() {
     // var keywords = new RegExp(keywords, 'i');
-    Spots.find( {$and: [{'zip': zip}, {$or: [
-      {spotName: new RegExp(keywords, 'i')},
-      {'streetAddress': new RegExp(keywords, 'i')},
-      {'city': new RegExp(keywords, 'i')},
-      {'state': new RegExp(keywords, 'i')},
-      {'notes': new RegExp(keywords, 'i')},
-      {'keywords': new RegExp(keywords, 'i')}
+    Spots.find( {$and: [{'info.zip': zip}, {$or: [
+      {'info.spotName': new RegExp(keywords, 'i')},
+      {'info.streetAddress': new RegExp(keywords, 'i')},
+      {'info.city': new RegExp(keywords, 'i')},
+      {'info.state': new RegExp(keywords, 'i')},
+      {'info.notes': new RegExp(keywords, 'i')},
+      {'info.keywords': new RegExp(keywords, 'i')}
     ]}]},
       function(err, spots) {
       if(err) {
@@ -107,12 +107,12 @@ router.get('/', function(req, res) {
     console.log("Searching without Zipcode");
     // var keywords = new RegExp(keywords, 'i');
     Spots.find( {$or: [
-      {spotName: new RegExp(keywords, 'i')},
-      {'streetAddress': new RegExp(keywords, 'i')},
-      {'city': new RegExp(keywords, 'i')},
-      {'state': new RegExp(keywords, 'i')},
-      {'notes': new RegExp(keywords, 'i')},
-      {'keywords': new RegExp(keywords, 'i')}
+      {'info.spotName': new RegExp(keywords, 'i')},
+      {'info.streetAddress': new RegExp(keywords, 'i')},
+      {'info.city': new RegExp(keywords, 'i')},
+      {'info.state': new RegExp(keywords, 'i')},
+      {'info.notes': new RegExp(keywords, 'i')},
+      {'info.keywords': new RegExp(keywords, 'i')}
     ]},
       function(err, spots) {
       if(err) {
@@ -139,7 +139,7 @@ router.get('/', function(req, res) {
 
   function findJustZip() {
     console.log("Searching without Zipcode");
-    Spots.find( {'zip': zip},
+    Spots.find( {'info.zip': zip},
       function(err, spots) {
       if(err) {
         console.log("Query error searching database: ", err);

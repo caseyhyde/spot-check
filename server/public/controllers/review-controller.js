@@ -14,10 +14,6 @@ function(SpotFactory, $location) {
     console.log("Image data received from new-spot-factory: ", self.images);
   }
 
-  // function loadImage() {
-  //   self.images = SpotFactory.images;
-  //   if()
-  // }
 
   self.confirmSpot = function() {
     SpotFactory.submitSpot().then($location.path('/search'));
