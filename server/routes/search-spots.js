@@ -7,8 +7,11 @@ var mongoConnection = require('../modules/mongo-connection');
 mongoConnection.connect();
 
 router.get('/', function(req, res) {
+
+  var testSpot = new Spots({zip: 999});
+
   console.log("TEST");
-  Spots.findOne({"info.zip": 999}, function(error, data) {
+  testSpot.findOne({"info.zip": 999}, function(error, data) {
     console.log("error: ", error);
     console.log("data: ", data);
   });
