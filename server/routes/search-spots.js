@@ -4,6 +4,10 @@ var Spots = require('../models/newSpot');
 
 
 router.get('/', function(req, res) {
+  console.log("TEST");
+});
+
+router.get('/hold', function(req, res) {
 
   console.log("req.headers: ", req.headers);
 
