@@ -23,10 +23,10 @@ var newSpotSchema = new Schema ({
   images: spotImages
 })
 
-var testSchema = new Schema ({
-  zip: Number
-})
+// var testSchema = new Schema ({
+//   zip: Number
+// })
 
-var newSpot = mongoose.model('Spot', testSchema);
+var newSpot = mongoose.model('Spot', newSpotSchema);
 
 module.exports = newSpot;
