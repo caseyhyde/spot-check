@@ -3,15 +3,15 @@ var router = express.Router();
 var Spots = require('../models/newSpot');
 
 
-router.get('/', function(req, res) {
+router.get('/hold', function(req, res) {
   console.log("TEST");
-  Spots.find({}, function(error, data) {
+  Spots.findOne({}, function(error, data) {
     console.log("error: ", error);
     console.log("data: ", data);
-  })
+  });
 });
 
-router.get('/hold', function(req, res) {
+router.get('/', function(req, res) {
 
   console.log("req.headers: ", req.headers);
 
