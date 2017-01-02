@@ -5,6 +5,9 @@ var Spots = require('../models/newSpot');
 
 router.get('/', function(req, res) {
   console.log("TEST");
+  Spots.find({}, function(error, data) {
+    console.log("error: ", error);
+  })
 });
 
 router.get('/hold', function(req, res) {
