@@ -23,9 +23,6 @@ var newSpotSchema = new Schema ({
   images: spotImages
 })
 
-// var testSchema = new Schema ({
-//   zip: Number
-// })
 
 var newSpot = mongoose.model('Spot', newSpotSchema);
 

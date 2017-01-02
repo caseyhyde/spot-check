@@ -6,15 +6,17 @@ var Spots = require('../models/newSpot');
 //
 // mongoConnection.connect();
 
-router.get('/hold', function(req, res) {
+var SearchSpot = require('../models/searchSpot');
+
+router.get('/', function(req, res) {
   console.log("TEST");
-  Spots.findOne({"info.zip": 999}, function(error, data) {
+  SearchSpot.find({}, function(error, data) {
     console.log("error: ", error);
     console.log("data: ", data);
   });
 });
 
-router.get('/', function(req, res) {
+router.get('/hold', function(req, res) {
 
   console.log("req.headers: ", req.headers);
 
