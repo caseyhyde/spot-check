@@ -26,6 +26,7 @@ router.get('/', function(req, res) {
 
   function findAll() {
     console.log("Searching all");
+    console.log("process.env.MONGODB_URI: ", process.env.MONGODB_URI);
     Spots.find( {},
       function(err, spots) {
       if(err) {
