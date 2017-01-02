@@ -10,7 +10,7 @@ var SearchSpot = require('../models/searchSpot');
 
 router.get('/', function(req, res) {
   console.log("TEST");
-  SearchSpot.find({}, function(error, data) {
+  Spots.find({}, function(error, data) {
     console.log("error: ", error);
     console.log("data: ", data);
   });

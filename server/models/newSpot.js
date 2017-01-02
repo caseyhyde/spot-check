@@ -6,7 +6,7 @@ var spotInfo = new Schema({ //var newSpot is a new Mongoose Schema
   streetAddress: {type: String, lowercase: true, required: true},
   city: {type: String, lowercase: true, required: true},
   state: {type: String, lowercase: true, required: true},
-  zip: {type: Number, required: true},
+  zip: Number,
   notes: {type: String, lowercase: true},
 });//End Schema
 
