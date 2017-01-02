@@ -2,12 +2,12 @@ var mongoose = require('mongoose'); //Bring in Mongoose module
 var Schema = mongoose.Schema; //var Shema is a Mongoose Schema
 
 var spotInfo = new Schema({ //var newSpot is a new Mongoose Schema
-  spotName: {type: String, lowercase: true, required: true}, //convert  all strings to lowercase
-  streetAddress: {type: String, lowercase: true, required: true},
-  city: {type: String, lowercase: true, required: true},
-  state: {type: String, lowercase: true, required: true},
+  spotName: String, //convert  all strings to lowercase
+  streetAddress: String,
+  city: String,
+  state: String,
   zip: Number,
-  notes: {type: String, lowercase: true},
+  notes: String,
 });//End Schema
 
 var spotImages = new Schema ({
