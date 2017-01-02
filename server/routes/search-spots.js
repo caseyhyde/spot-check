@@ -7,6 +7,7 @@ router.get('/', function(req, res) {
   console.log("TEST");
   Spots.find({}, function(error, data) {
     console.log("error: ", error);
+    console.log("data: ", data);
   })
 });
 
