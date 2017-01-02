@@ -1,11 +1,17 @@
 var mongoose = require('mongoose');
-var connectionString = require('./database-config');
+
+var databaseURI = '';
+if(process.env.MONGODB_URI != undefined) {
+  databaseURI = process.env.MONGODB_URI;
+} else {
+  databaseURI = 'mongodb://localhost:27017/spotCheck';
+}
 
 var connectToDatabase = function() {
-  mongoose.connect(connectionString);
+  mongoose.connect(databaseURI);
 
   mongoose.connection.on('connected', function() {
-    console.log('Mongoose connected to ', connectionString);
+    console.log('Mongoose connected to ', databaseURI);
   });
 
   mongoose.connection.on('error', function(err) {
