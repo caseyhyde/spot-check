@@ -43,9 +43,9 @@ router.get('/', function(req, res) {
     // console.log("Spots: ", Spots);
     // console.log("Spots.find: ", Spots.find({}));
     Spots.find({},
-      function(err, spots) {
+      function(error, spots) {
       if(err) {
-        console.log("Query error searching database: ", err);
+        console.log("Query error searching database: ", error);
         res.sendStatus(500);
         keywords = undefined;
         zip = undefined;
