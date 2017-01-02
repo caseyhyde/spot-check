@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var Spots = require('../models/newSpot');
-var mongoConnection = require('../modules/mongo-connection');
-
-
-mongoConnection.connect();
+// var mongoConnection = require('../modules/mongo-connection');
+//
+//
+// mongoConnection.connect();
 
 router.get('/hold', function(req, res) {
   console.log("TEST");
