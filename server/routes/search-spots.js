@@ -6,18 +6,15 @@ var mongoConnection = require('../modules/mongo-connection');
 
 mongoConnection.connect();
 
-router.get('/', function(req, res) {
-
-  var testSpot = new Spots({zip: 999});
-
+router.get('/hold', function(req, res) {
   console.log("TEST");
-  testSpot.findOne({"info.zip": 999}, function(error, data) {
+  Spots.findOne({"info.zip": 999}, function(error, data) {
     console.log("error: ", error);
     console.log("data: ", data);
   });
 });
 
-router.get('/hold', function(req, res) {
+router.get('/', function(req, res) {
 
   console.log("req.headers: ", req.headers);
 
@@ -43,7 +40,7 @@ router.get('/hold', function(req, res) {
     // console.log("process.env.MONGODB_URI: ", process.env.MONGODB_URI);
     // console.log("Spots: ", Spots);
     // console.log("Spots.find: ", Spots.find({}));
-    Spots.findOne({},
+    Spots.find({},
       function(err, spots) {
       if(err) {
         console.log("Query error searching database: ", err);
