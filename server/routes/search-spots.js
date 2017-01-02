@@ -8,7 +8,7 @@ var Spots = require('../models/newSpot');
 
 var SearchSpot = require('../models/searchSpot');
 
-router.get('/', function(req, res) {
+router.get('/hold', function(req, res) {
   console.log("TEST");
   Spots.find({}, function(error, data) {
     console.log("error: ", error);
@@ -16,7 +16,7 @@ router.get('/', function(req, res) {
   });
 });
 
-router.get('/hold', function(req, res) {
+router.get('/', function(req, res) {
 
   console.log("req.headers: ", req.headers);
 
