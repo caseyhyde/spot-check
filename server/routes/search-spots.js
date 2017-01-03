@@ -44,7 +44,7 @@ router.get('/', function(req, res) {
     // console.log("Spots.find: ", Spots.find({}));
     Spots.find({},
       function(error, spots) {
-      if(err) {
+      if(error) {
         console.log("Query error searching database: ", error);
         res.sendStatus(500);
         keywords = undefined;
