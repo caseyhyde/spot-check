@@ -7,8 +7,11 @@ if(process.env.MONGODB_URI != undefined) {
   databaseURI = 'mongodb://localhost:27017/spotCheck';
 }
 
+var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
+                replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
+
 var connectToDatabase = function() {
-  mongoose.connect(databaseURI);
+  mongoose.connect(databaseURI, options);
 
   mongoose.connection.on('connected', function() {
     console.log('Mongoose connected to ', databaseURI);
