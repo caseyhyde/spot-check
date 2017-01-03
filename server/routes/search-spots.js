@@ -3,18 +3,20 @@ var router = express.Router();
 var Spots = require('../models/newSpot');
 var mongoConnection = require('../modules/mongo-connection');
 
+var searchSpotsTest = require('../models/searchSpot');
+
 // console.log("connection in search-spots: ", mongoConnection.connect());
 
 
-router.get('/hold', function(req, res) {
+router.get('/', function(req, res) {
   console.log("TEST");
-  Spots.find({}, function(error, data) {
+  searchSpotsTest.find({}, function(error, data) {
     console.log("error: ", error);
     console.log("data: ", data);
   });
 });
 
-router.get('/', function(req, res, next) {
+router.get('/hold', function(req, res, next) {
 
   console.log("req.headers: ", req.headers);
 
