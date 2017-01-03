@@ -7,6 +7,7 @@ spotCheckApp.factory('SpotFactory', ['$http', 'multipartForm', function($http,
     images: [],
 
     setSpotData: function(newSpotData) {
+      console.log("factory spot data: ", newSpotData);
       spot.spotData = newSpotData;
       spot.images = [];
       setImage();

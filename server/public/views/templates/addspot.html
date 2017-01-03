@@ -1,5 +1,6 @@
 <div class="col-xs-9 input-group">
   <form>
+    <input ng-model="add.newSpot.email" id="email" type="text" class="form-control" placeholder="Your Email Address (needed to verify Spot)">
     <input ng-model="add.newSpot.spotName" id="spotName" type="text" class="form-control" placeholder="Spot Name">
     <input ng-model="add.newSpot.streetAddress" id="streetAddress" type="text" class="form-control" placeholder="Street Address">
     <input ng-model="add.newSpot.city" id="city" type="text" class="form-control" placeholder="City">
@@ -9,10 +10,4 @@
     <input type="file" file-model="add.newSpot.files" name="file" multiple/>
     <button class="btn-default" ng-click="add.reviewSpot()">Review</button>
   </form>
-  <div id="formTestDiv">
-    <img ng-src="{{add.newSpot.ImageSrc}}" />
-    <h3>From info: </br></h3>
-    <p>{{add.newSpot.spotName}}</br>{{add.newSpot.streetAddress}}</br>
-    {{add.newSpot.city}}</br>{{add.newSpot.state}}</br>{{add.newSpot.zip}}</p>
-  </div>
 </div>

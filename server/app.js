@@ -7,6 +7,7 @@ var mongoConnection = require('./modules/mongo-connection');
 var addSpot = require('./routes/add-spot');
 var searchSpots = require('./routes/search-spots');
 var bucketCreator = require('./middleware/bucketCreator');
+var confirmSpot = require('./routes/confirm-spot');
 
 
 
@@ -34,6 +35,7 @@ app.get('/', function(req, res) {
 
 app.use('/addSpot', addSpot);
 app.use('/searchSpots', searchSpots);
+app.use('/confirmSpot', confirmSpot);
 
 
 
