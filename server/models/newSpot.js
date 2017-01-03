@@ -8,8 +8,9 @@ var spotInfo = new Schema({ //var newSpot is a new Mongoose Schema
   state: {type: String, lowercase: true, required: true},
   zip: {type: Number, required: true},
   notes: {type: String, lowercase: true},
-  _id: Object
-});//End Schema
+  bucket: String,
+  urls: [String]
+}, {versionKey: false});//End Schema
 
 var spotImages = new Schema ({
   bucket: String,
@@ -34,6 +35,6 @@ var newSpotSchema = new Schema ({
 
 
 
-var newSpot = mongoose.model('Spot', newSpotSchema);
+var newSpot = mongoose.model('Spot', spotInfo);
 
 module.exports = newSpot;

@@ -29,11 +29,13 @@ aws.config.update({
 GLOBAL SPOT OBJECT
 *******************/
 var spot = {
-  info: {},
-  images: {
-    bucket: "",
-    urls: []
-  }
+  spotName: "",
+  streetAddress: "",
+  city: "",
+  state: "",
+  notes: "",
+  bucket: "",
+  urls: []
 };
 
 
@@ -69,10 +71,7 @@ var upload = multer({
 
       currentKey = uuid();
       imageIndex = req.files.length;
-      spot.images.urls.push({
-        image: imageIndex,
-        url: "https://s3.amazonaws.com/" + req.bucket + "/" + currentKey
-      });
+      spot.urls.push("https://s3.amazonaws.com/" + req.bucket + "/" + currentKey);
 
       cb(null, currentKey);
     },
@@ -89,8 +88,13 @@ router.use('/test', bucketCreator);
 router.post('/test', upload.array('file', 10), function(req, res, next) {
   console.log("Req.body: ", req.body);
   console.log("Req.files: ", req.files);
-  spot.info = req.body;
-  spot.images.bucket = req.bucket;
+  spot.spotName = req.body.spotName;
+  spot.streetAddress = req.body.streetAddress;
+  spot.city = req.body.city;
+  spot.state = req.body.state;
+  spot.zip = req.body.zip;
+  spot.notes = req.body.notes;
+  spot.bucket = req.bucket;
   // spot.imageLocation = {
   //   bucket: req.bucket,
   //   key: currentKey,
