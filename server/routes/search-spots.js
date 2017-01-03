@@ -3,14 +3,14 @@ var router = express.Router();
 var Spots = require('../models/newSpot');
 var mongoConnection = require('../modules/mongo-connection');
 
-var searchSpotsTest = require('../models/searchSpot');
+var SearchSpot = require('../models/searchSpot');
 
 // console.log("connection in search-spots: ", mongoConnection.connect());
 
 
 router.get('/hold', function(req, res) {
   console.log("TEST");
-  searchSpotsTest.find({}, function(error, data) {
+  SearchSpots.find({}, function(error, data) {
     console.log("searchSpotsTest: ", searchSpotsTest);
     console.log("searchSpotsTest.find: ", searchSpotsTest.find());
     console.log("process.env.MONGODB_URI: ", process.env.MONGODB_URI);
