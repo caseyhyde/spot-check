@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var Spots = require('../models/newSpot');
-// var mongoConnection = require('../modules/mongo-connection');
-//
-//
+var mongoConnection = require('../modules/mongo-connection');
+
+// console.log("connection in search-spots: ", mongoConnection.connect());
 // mongoConnection.connect();
 
 var SearchSpot = require('../models/searchSpot');

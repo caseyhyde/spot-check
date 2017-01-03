@@ -24,7 +24,7 @@ app.use(bodyParser.json());//use body parser on all requests
 
 //Call the function exported as the connect property of mongo-connection
 //which connects us to our Mongo database.
-mongoConnection.connect();
+// mongoConnection.connect();
 
 
 app.get('/', function(req, res) {

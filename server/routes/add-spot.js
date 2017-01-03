@@ -9,6 +9,13 @@ var uuid = require('../modules/uuid-creator');
 var keys = require('../../credentials/env.js');
 var bucketCreator = require('../middleware/bucketCreator');
 
+var mongoConnection = require('../modules/mongo-connection');
+
+// console.log("connection in search-spots: ", mongoConnection.connect());
+// mongoConnection.connect();
+
+var SearchSpot = require('../models/searchSpot');
+
 /*******************
 SET AWS CREDENTIALS
 ********************/
