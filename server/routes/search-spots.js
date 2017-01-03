@@ -11,6 +11,11 @@ var searchSpotsTest = require('../models/searchSpot');
 router.get('/', function(req, res) {
   console.log("TEST");
   searchSpotsTest.find({}, function(error, data) {
+    console.log("searchSpotsTest: ", searchSpotsTest);
+    console.log("searchSpotsTest.find: ", searchSpotsTest.find());
+    console.log("process.env.MONGODB_URI: ", process.env.MONGODB_URI);
+    console.log("Spots: ", Spots);
+    console.log("Spots.find: ", Spots.find({}));
     console.log("error: ", error);
     console.log("data: ", data);
   });
