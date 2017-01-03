@@ -42,8 +42,7 @@ router.get('/', function(req, res) {
     // console.log("process.env.MONGODB_URI: ", process.env.MONGODB_URI);
     // console.log("Spots: ", Spots);
     // console.log("Spots.find: ", Spots.find({}));
-    Spots.find({},
-      function(err, spots) {
+    Spots.find({}, function(err, spots) {
       if(err) {
         console.log("Query error searching database: ", err);
         res.sendStatus(500);
@@ -65,25 +64,6 @@ router.get('/', function(req, res) {
       }
     });
   }
-
-  // function findOneLetter() {
-  //   console.log("find one letter");
-  //   Spots.find({spotName: new RegExp(keywords, 'i')}, function(err, spots) {
-  //     if(err) {
-  //       console.log("Querry error searching one letter: ", err);
-  //       res.sendStatus(500);
-  //     } else {
-  //       console.log("spots: ", spots);
-  //       if(spots === []) {
-  //         console.log("No spots have that letter anywhere...");
-  //         res.sendStatus(403);
-  //       } else {
-  //         console.log("Found these spots: ", spots);
-  //         res.send(spots);
-  //       }
-  //     }
-  //   })
-  // }
 
 
   function findZipAndKeywords() {
