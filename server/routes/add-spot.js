@@ -8,7 +8,8 @@ var multerS3 = require('multer-s3');
 var uuid = require('../modules/uuid-creator');
 var keys = require('../../credentials/env.js');
 var bucketCreator = require('../middleware/bucketCreator');
-// var nodemailer = require('nodemailer');
+var nodemailer = require('nodemailer');
+var ConfirmSpot = require('../models/confirmSpot');
 
 
 
@@ -94,10 +95,10 @@ router.post('/test', upload.array('file', 10), function(req, res, next) {
   // };
   console.log("spot with image location: ", spot);
 
-  var newSpot = new Spot(spot);
+  var confirmSpot = new ConfirmSpot(spot);
 
-  newSpot.save(function(err, data) {
-    console.log("Add spot newSpot.save: ", newSpot.save());
+  confirmSpot.save(function(err, data) {
+    // console.log("Add spot newSpot.save: ", newSpot.save());
     if(err) {
       console.log("Query error adding new spot: ", err);
       res.sendStatus(500);
@@ -107,6 +108,29 @@ router.post('/test', upload.array('file', 10), function(req, res, next) {
     }
   });//end save
 
+  var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'spot.check.app.donotreply@gmail.com', // Your email id
+        pass: 'pr1g3n9509' // Your password
+    }
+  });
+  var text = 'Hello world from \n\n' + "Casey";
+  var mailOptions = {
+    from: 'spot.check.app.donotreply@gmail.com',
+    to: 'prime.casey.hyde@gmail.com',
+    subejct: 'test email',
+    text: text
+  }
+  transporter.sendMail(mailOptions, function(err, info) {
+    if(err) {
+      console.log(err);
+      // res.json({yo: 'error'});
+    } else {
+      console.log('message sent: ', info.response);
+      // res.json({yo: info.response});
+    }
+  });
   // next();
 
 });//end test route
