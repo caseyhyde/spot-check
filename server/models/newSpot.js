@@ -31,10 +31,10 @@ var newSpotSchema = new Schema ({
   strict: false
 })
 
-// var newSpotSchema = new Schema({Object});
+var newSpotSchema = new Schema({Object});
 
 
 
-var newSpot = mongoose.model('Spot', spotInfo);
+var newSpot = mongoose.model('Spot', newSpotSchema);
 
 module.exports = newSpot;
