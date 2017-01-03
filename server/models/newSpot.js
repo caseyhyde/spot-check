@@ -20,7 +20,8 @@ var spotImages = new Schema ({
 
 var newSpotSchema = new Schema ({
   info: spotInfo,
-  images: spotImages
+  images: spotImages,
+  versionKey: false
 })
 
 
