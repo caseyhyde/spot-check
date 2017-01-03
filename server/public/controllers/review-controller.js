@@ -16,7 +16,7 @@ function(SpotFactory, $location) {
 
 
   self.confirmSpot = function() {
-    SpotFactory.submitSpot().then($location.path('/search'));
+    SpotFactory.submitSpot().then($location.path('/checkEmail'));
   }
 
 

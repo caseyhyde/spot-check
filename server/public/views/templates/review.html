@@ -1,15 +1,16 @@
-<h1>Reveiw Page!</h1>
-<button><a href="#add">Back to Edit</a></button>
-
-<div>
+<div class="col-xs-12 centered">
   <h1>Review Spot</h1>
   <h3>{{review.spotData.spotName}}</h3></br>
-  <p>{{review.spotData.address.streetAddress}}</p>
-  <p>{{review.spotData.address.city}} </p>
-  <p>{{review.spotData.address.state}}</p></br>
-  <p>{{review.spotData.details.notes}}</p>
+  <h4>{{review.spotData.streetAddress}}</h4>
+  <h4>{{review.spotData.city}} </h4>
+  <h4>{{review.spotData.state}}</h4></br>
+  <h4>{{review.spotData.notes}}</h4>
 </div>
-<div ng-repeat="image in review.images">
-  <img class="col-xs-3" ng-src="{{image}}">
+<div class="col-xs-12">
+  <div ng-repeat="image in review.images">
+    <img class="col-xs-4" ng-src="{{image}}">
+  </div>
 </div>
+
 <button ng-click="review.confirmSpot()">Confirm</button>
+<button><a href="#add">Back to Edit</a></button>
