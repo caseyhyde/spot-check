@@ -31,6 +31,7 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, './public/views/index.html'));
 });//Send index.html on page load
 
+mongoConnection.connect();
 
 app.use('/addSpot', addSpot);
 app.use('/searchSpots', searchSpots);

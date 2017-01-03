@@ -4,9 +4,7 @@ var Spots = require('../models/newSpot');
 var mongoConnection = require('../modules/mongo-connection');
 
 // console.log("connection in search-spots: ", mongoConnection.connect());
-mongoConnection.connect();
 
-var SearchSpot = require('../models/searchSpot');
 
 router.get('/hold', function(req, res) {
   console.log("TEST");
@@ -16,7 +14,7 @@ router.get('/hold', function(req, res) {
   });
 });
 
-router.get('/', function(req, res) {
+router.get('/', function(req, res, next) {
 
   console.log("req.headers: ", req.headers);
 
@@ -44,6 +42,7 @@ router.get('/', function(req, res) {
     // console.log("Spots.find: ", Spots.find({}));
     Spots.find({}, function(err, spots) {
       if(err) {
+        return next(err);
         console.log("Query error searching database: ", err);
         res.sendStatus(500);
         keywords = undefined;
