@@ -35,6 +35,6 @@ var newSpotSchema = new Schema({Object});
 
 
 
-var newSpot = mongoose.model('Spot', newSpotSchema);
+var newSpot = mongoose.model('spot', newSpotSchema);
 
 module.exports = newSpot;
