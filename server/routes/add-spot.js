@@ -8,6 +8,9 @@ var multerS3 = require('multer-s3');
 var uuid = require('../modules/uuid-creator');
 var keys = require('../../credentials/env.js');
 var bucketCreator = require('../middleware/bucketCreator');
+// var nodemailer = require('nodemailer');
+
+
 
 /*******************
 SET AWS CREDENTIALS
