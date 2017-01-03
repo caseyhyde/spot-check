@@ -22,7 +22,8 @@ var newSpotSchema = new Schema ({
   info: spotInfo,
   images: spotImages,
 }, {
-  versionKey: false
+  versionKey: false,
+  strict: false
 })
 
 // var newSpotSchema = new Schema({Object});
