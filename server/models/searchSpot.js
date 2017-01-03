@@ -8,19 +8,23 @@ var spotInfo = new Schema({ //var newSpot is a new Mongoose Schema
   state: String,
   zip: Number,
   notes: String,
+  _id: Object
 });//End Schema
 
 var spotImages = new Schema ({
   bucket: String,
+  id: Object,
   urls: [{
     image: Number,
-    url: String
+    url: String,
+    id: Object
   }]
 });
 
 var searchSpotSchema = new Schema ({
+  _id: Object,
   info: spotInfo,
-  images: spotImages
+  images: spotImages,
 })
 
 
