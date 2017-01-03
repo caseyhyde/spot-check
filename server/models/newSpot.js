@@ -8,17 +8,21 @@ var spotInfo = new Schema({ //var newSpot is a new Mongoose Schema
   state: {type: String, lowercase: true, required: true},
   zip: {type: Number, required: true},
   notes: {type: String, lowercase: true},
+  _id: Object
 });//End Schema
 
 var spotImages = new Schema ({
   bucket: String,
+  _id: Object,
   urls: [{
     image: Number,
-    url: String
+    url: String,
+    _id: Object
   }]
 });
 
 var newSpotSchema = new Schema ({
+  _id: Object,
   info: spotInfo,
   images: spotImages,
 }, {
