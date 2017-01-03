@@ -3,11 +3,11 @@ body {
   background-color: darkgrey;
 }
 
-/*.pleaseCenter {
-  margin-left: 20%;
-  margin-right: 20%;
+.pleaseCenter {
+  margin-left: 10%;
+  margin-right: 10%;
   text-align: center;
-}*/
+}
 
 
 .jumbotron {
