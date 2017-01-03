@@ -1,6 +1,10 @@
 var mongoose = require('mongoose'); //Bring in Mongoose module
 var Schema = mongoose.Schema; //var Shema is a Mongoose Schema
 
+var id = new Schema ({
+  $oid: String
+});
+
 var spotInfo = new Schema({ //var newSpot is a new Mongoose Schema
   spotName: String, //convert  all strings to lowercase
   streetAddress: String,
@@ -8,7 +12,7 @@ var spotInfo = new Schema({ //var newSpot is a new Mongoose Schema
   state: String,
   zip: Number,
   notes: String,
-  _id: Object
+  _id: id
 });//End Schema
 
 var spotImages = new Schema ({
@@ -17,14 +21,17 @@ var spotImages = new Schema ({
   urls: [{
     image: Number,
     url: String,
-    id: Object
+    _id: id
   }]
 });
 
+
+
 var searchSpotSchema = new Schema ({
-  _id: Object,
+  _id: id,
   info: spotInfo,
   images: spotImages,
+  __v: Number
 })
 
 
