@@ -8,7 +8,7 @@ var searchSpotsTest = require('../models/searchSpot');
 // console.log("connection in search-spots: ", mongoConnection.connect());
 
 
-router.get('/', function(req, res) {
+router.get('/hold', function(req, res) {
   console.log("TEST");
   searchSpotsTest.find({}, function(error, data) {
     console.log("searchSpotsTest: ", searchSpotsTest);
@@ -21,7 +21,7 @@ router.get('/', function(req, res) {
   });
 });
 
-router.get('/hold', function(req, res, next) {
+router.get('/', function(req, res, next) {
 
   console.log("req.headers: ", req.headers);
 
