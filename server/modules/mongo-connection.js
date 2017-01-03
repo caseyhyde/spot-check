@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 
 var databaseURI = '';
-if(process.env.MONGODB_URI != undefined) {
-  databaseURI = process.env.MONGODB_URI;
+if(process.env.MONGODB_ADMIN != undefined) {
+  databaseURI = process.env.MONGODB_ADMIN;
 } else {
   databaseURI = 'mongodb://localhost:27017/spotCheck';
 }
