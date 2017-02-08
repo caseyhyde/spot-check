@@ -12,7 +12,7 @@ var confirmSpot = require('./routes/confirm-spot');
 
 
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8000;
 
 app.use(express.static('server/public'));
 app.use(bodyParser.json());//use body parser on all requests

@@ -22,6 +22,8 @@ aws.config.update({
 });
 
 
+
+
 /******************
 GLOBAL SPOT OBJECT
 *******************/
@@ -118,7 +120,7 @@ router.post('/test', upload.array('file', 10), function(req, res, next) {
     }
   });
   var text = "Thank you for posting to Spot Check! \n\n please click the link below to confirm your Spot: \n\n " +
-  "http://localhost:3000/#/confirmSpot/confirmationKey/" + spot.info.confirmationKey;
+  "http://localhost:8000/#/confirmSpot/confirmationKey/" + spot.info.confirmationKey;
   var mailOptions = {
     from: 'spot.check.app.donotreply@gmail.com',
     to: spot.info.email,
