@@ -1,5 +1,5 @@
-var mongoose = require('mongoose'); //Bring in Mongoose module
-var Schema = mongoose.Schema; //var Shema is a Mongoose Schema
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 var spotInfo = new Schema({ //var newSpot is a new Mongoose Schema
   spotName: {type: String, lowercase: true, required: true}, //convert  all strings to lowercase
@@ -8,34 +8,24 @@ var spotInfo = new Schema({ //var newSpot is a new Mongoose Schema
   state: {type: String, lowercase: true, required: true},
   zip: {type: Number, required: true},
   notes: {type: String, lowercase: true},
-  bucket: String,
-  urls: [String]
-}, {versionKey: false});//End Schema
-
+  confirmationKey: String,
+  email: String
+});//End Schema
 
 var spotImages = new Schema ({
   bucket: String,
-  _id: Object,
   urls: [{
     image: Number,
-    url: String,
-    _id: Object
+    url: String
   }]
 });
 
 var newSpotSchema = new Schema ({
-  _id: Object,
   info: spotInfo,
   images: spotImages,
-}, {
-  versionKey: false,
-  strict: false
+  versionKey: false
 })
 
-var newSpotSchema = new Schema({Object});
+var confirmSpot = mongoose.model('newSpot', newSpotSchema);
 
-
-
-var newSpot = mongoose.model('spot', newSpotSchema);
-
-module.exports = newSpot;
+module.exports = confirmSpot;

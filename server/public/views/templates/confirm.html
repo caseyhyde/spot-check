@@ -1,0 +1,11 @@
+<h1>Confirm Spot</h1>
+
+<h3>Spot Name: {{confirm.spot.info.spotName}}</h3>
+<h3>Spot Address: {{confirm.spot.info.streetAddress}} {{confirm.spot.info.city}}, {{confirm.spot.info.state}} {{confirm.spot.info.zip}}</h3> </br>
+<h3>Notes: </h3><p>{{confirm.spot.info.notes}}</p>
+<div ng-repeat="image in confirm.spot.images.urls">
+  <img class="col-xs-3" ng-src="{{image.url}}"/>
+</div>
+
+
+<button type="button" ng-click="confirm.confirmSpot()" name="button">click me!</button>

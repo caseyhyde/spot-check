@@ -1,16 +1,18 @@
 </br></br></br>
-<div id="results" ng-repeat="spot in results.searchResults">
-  <h4>{{spot.spotName}}</h4>
-  <p>
-    {{spot.info.streetAddress}}</br>
-    {{spot.info.city}},
-    {{spot.info.state}}
-    {{spot.info.zip}}</br>
-    {{spot.info.notes}}</br></br>
-    <p>AWS S3 KEYS: {{spot.images.keys}}</p></br>
-    <p>AWS S3 BUCKET: {{spot.images.bucket}}</p>
-    <div ng-repeat="image in spot.images.urls">
-      <img class="col-xs-3" ng-src="{{image.url}}"/>
-    </div>
-  </p>
+<div class="container centered result" ng-repeat="spot in results.searchResults">
+  <div id="results" class="col-xs-8 col-xs-offset-2 col-lg-8 col-lg-offset-2">
+    <h4>{{spot.info.spotName}}</h4>
+    <p>
+      {{spot.info.streetAddress}}</br>
+      {{spot.info.city}},
+      {{spot.info.state}}
+      {{spot.info.zip}}</br>
+      {{spot.info.notes}}</br></br>
+      <div class="container col-xs-offset-1 col-lg-offset-1 text-center">
+        <div ng-repeat="image in spot.images.urls">
+          <img class="col-xs-3 centered" ng-src="{{image.url}}"/>
+        </div>
+      </div>
+    </p>
+  </div>
 </div>

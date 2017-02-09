@@ -7,11 +7,12 @@ var mongoConnection = require('./modules/mongo-connection');
 var addSpot = require('./routes/add-spot');
 var searchSpots = require('./routes/search-spots');
 var bucketCreator = require('./middleware/bucketCreator');
+var confirmSpot = require('./routes/confirm-spot');
 
 
 
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8000;
 
 app.use(express.static('server/public'));
 app.use(bodyParser.json());//use body parser on all requests
@@ -35,6 +36,7 @@ mongoConnection.connect();
 
 app.use('/addSpot', addSpot);
 app.use('/searchSpots', searchSpots);
+app.use('/confirmSpot', confirmSpot);
 
 
 

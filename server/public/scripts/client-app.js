@@ -23,6 +23,16 @@ spotCheckApp.config(['$routeProvider', function($routeProvider) {
       controller: 'ResultsController',
       controllerAs: 'results'
     })
+    .when('/confirmSpot/confirmationKey/:key', {
+      templateUrl: 'views/templates/confirm.html',
+      controller: 'ConfirmController',
+      controllerAs: 'confirm'
+    })
+    .when('/checkEmail', {
+      templateUrl: 'views/templates/checkEmail.html',
+      controller: 'CheckEmailController',
+      controllerAs: 'email'
+    })
     .otherwise({
       redirectTo: '/search'
     })

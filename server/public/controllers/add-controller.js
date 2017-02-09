@@ -4,6 +4,7 @@ spotCheckApp.controller('AddController', ['SpotFactory', '$http',
   var self = this;
 
   self.newSpot = {
+    email: "",
     spotName: "",
     streetAddress: "",
     city: "",

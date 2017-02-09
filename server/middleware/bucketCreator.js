@@ -10,6 +10,7 @@ aws.config.update({
 var s3 = new aws.S3();
 
 var bucketCreator = function(req, res, next) {
+  console.log("keys: ", process.env.SECRET_ACCESS_KEY, process.env.ACCESS_KEY_ID);
   //make random bucket name:
   var bucket = Sentencer.make("{{adjective}}-{{noun}}");
   //create new bucket on S3:

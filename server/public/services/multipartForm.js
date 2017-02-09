@@ -14,6 +14,7 @@ spotCheckApp.service('multipartForm', ['$http', function($http) {
     fd.append('state', data.state);
     fd.append('zip', data.zip);
     fd.append('notes', data.notes);
+    fd.append('email', data.email);
 
     for( var i = 0; i< data.files.length ; i++ ){
         fd.append('file' , data.files[i] );

@@ -7,6 +7,7 @@ spotCheckApp.factory('SpotFactory', ['$http', 'multipartForm', function($http,
     images: [],
 
     setSpotData: function(newSpotData) {
+      console.log("factory spot data: ", newSpotData);
       spot.spotData = newSpotData;
       spot.images = [];
       setImage();
@@ -47,7 +48,7 @@ spotCheckApp.factory('SpotFactory', ['$http', 'multipartForm', function($http,
       reader.readAsDataURL(file);
       reader.onload = function(e) {
         spot.images.push(e.target.result)
-        console.log("File reader finished...");
+        console.log("File reader finished...", spot.images);
       }
     }
 

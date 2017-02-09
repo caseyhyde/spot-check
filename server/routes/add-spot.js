@@ -8,6 +8,10 @@ var multerS3 = require('multer-s3');
 var uuid = require('../modules/uuid-creator');
 var keys = require('../../credentials/env.js');
 var bucketCreator = require('../middleware/bucketCreator');
+var nodemailer = require('nodemailer');
+var ConfirmSpot = require('../models/confirmSpot');
+
+
 
 var mongoConnection = require('../modules/mongo-connection');
 
@@ -23,6 +27,8 @@ aws.config.update({
   secretAccessKey: process.env.SECRET_ACCESS_KEY,
   accessKeyId: process.env.ACCESS_KEY_ID
 });
+
+
 
 
 /******************
@@ -67,6 +73,7 @@ var upload = multer({
       cb(null, req.bucket);
     },
     key: function(req, file, cb) {
+      console.log("req.body in key: ", req.body);
       console.log("request files length inside key multerS3 function: ", req.files.length);
 
       currentKey = uuid();
@@ -86,15 +93,18 @@ router.use('/test', bucketCreator);
 
 //send req through multerS3 to aws (max of 10 files)
 router.post('/test', upload.array('file', 10), function(req, res, next) {
-  console.log("Req.body: ", req.body);
+  console.log("Req.body test route: ", req.body.email);
   console.log("Req.files: ", req.files);
-  spot.spotName = req.body.spotName;
-  spot.streetAddress = req.body.streetAddress;
-  spot.city = req.body.city;
-  spot.state = req.body.state;
-  spot.zip = req.body.zip;
-  spot.notes = req.body.notes;
-  spot.bucket = req.bucket;
+  // spot.spotName = req.body.spotName;
+  // spot.streetAddress = req.body.streetAddress;
+  // spot.city = req.body.city;
+  // spot.state = req.body.state;
+  // spot.zip = req.body.zip;
+  // spot.notes = req.body.notes;
+  // spot.bucket = req.bucket;
+  spot.info = req.body;
+  spot.images.bucket = req.bucket;
+  spot.info.confirmationKey = uuid();
   // spot.imageLocation = {
   //   bucket: req.bucket,
   //   key: currentKey,
@@ -102,10 +112,10 @@ router.post('/test', upload.array('file', 10), function(req, res, next) {
   // };
   console.log("spot with image location: ", spot);
 
-  var newSpot = new Spot(spot);
+  var confirmSpot = new ConfirmSpot(spot);
 
-  newSpot.save(function(err, data) {
-    console.log("Add spot newSpot.save: ", newSpot.save());
+  confirmSpot.save(function(err, data) {
+    // console.log("Add spot newSpot.save: ", newSpot.save());
     if(err) {
       console.log("Query error adding new spot: ", err);
       res.sendStatus(500);
@@ -115,6 +125,30 @@ router.post('/test', upload.array('file', 10), function(req, res, next) {
     }
   });//end save
 
+  var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'spot.check.app.donotreply@gmail.com', // Your email id
+        pass: 'pr1g3n9509' // Your password
+    }
+  });
+  var text = "Thank you for posting to Spot Check! \n\n please click the link below to confirm your Spot: \n\n " +
+  "http://localhost:8000/#/confirmSpot/confirmationKey/" + spot.info.confirmationKey;
+  var mailOptions = {
+    from: 'spot.check.app.donotreply@gmail.com',
+    to: spot.info.email,
+    subejct: 'test email',
+    text: text
+  }
+  transporter.sendMail(mailOptions, function(err, info) {
+    if(err) {
+      console.log(err);
+      // res.json({yo: 'error'});
+    } else {
+      console.log('message sent: ', info.response);
+      // res.json({yo: info.response});
+    }
+  });
   // next();
 
 });//end test route
@@ -125,7 +159,7 @@ function resetSpot() {
     info: {},
     images: {
       bucket: "",
-      keys: {}
+      urls: []
     }
   };
 }
