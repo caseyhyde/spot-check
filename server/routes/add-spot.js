@@ -75,7 +75,10 @@ var upload = multer({
 
       currentKey = uuid();
       imageIndex = req.files.length;
-      spot.images.urls.push("https://s3.amazonaws.com/" + req.bucket + "/" + currentKey);
+      spot.images.urls.push({
+        image: imageIndex,
+        url: "https://s3.amazonaws.com/" + req.bucket + "/" + currentKey
+      });
 
       cb(null, currentKey);
     },
