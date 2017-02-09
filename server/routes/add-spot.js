@@ -7,7 +7,7 @@ var aws = require('aws-sdk');
 var multerS3 = require('multer-s3');
 var uuid = require('../modules/uuid-creator');
 var bucketCreator = require('../middleware/bucketCreator');
-var nodemailer = require('nodemailer');
+// var nodemailer = require('nodemailer');
 var ConfirmSpot = require('../models/confirmSpot');
 
 
@@ -125,30 +125,50 @@ router.post('/test', upload.array('file', 10), function(req, res, next) {
     }
   });//end save
 
-  var transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-        user: 'spot.check.app.donotreply@gmail.com', // Your email id
-        pass: 'pr1g3n9509' // Your password
-    }
+  var helper = require('sendgrid').mail;
+  var from_email = new helper.Email('test@example.com');
+  var to_email = new helper.Email('prime.casey.hyde@gmail.com');
+  var subject = 'Hello World from the SendGrid Node.js Library!';
+  var content = new helper.Content('text/plain', 'Hello, Email!');
+  var mail = new helper.Mail(from_email, subject, to_email, content);
+
+  var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
+  var request = sg.emptyRequest({
+    method: 'POST',
+    path: '/v3/mail/send',
+    body: mail.toJSON(),
   });
-  var text = "Thank you for posting to Spot Check! \n\n please click the link below to confirm your Spot: \n\n " +
-  "http://localhost:8000/#/confirmSpot/confirmationKey/" + spot.info.confirmationKey;
-  var mailOptions = {
-    from: 'spot.check.app.donotreply@gmail.com',
-    to: spot.info.email,
-    subejct: 'test email',
-    text: text
-  }
-  transporter.sendMail(mailOptions, function(err, info) {
-    if(err) {
-      console.log(err);
-      // res.json({yo: 'error'});
-    } else {
-      console.log('message sent: ', info.response);
-      // res.json({yo: info.response});
-    }
+
+  sg.API(request, function(error, response) {
+    console.log(response.statusCode);
+    console.log(response.body);
+    console.log(response.headers);
   });
+
+  // var transporter = nodemailer.createTransport({
+  //   service: 'Gmail',
+  //   auth: {
+  //       user: 'spot.check.app.donotreply@gmail.com', // Your email id
+  //       pass: 'pr1g3n9509' // Your password
+  //   }
+  // });
+  // var text = "Thank you for posting to Spot Check! \n\n please click the link below to confirm your Spot: \n\n " +
+  // "http://localhost:8000/#/confirmSpot/confirmationKey/" + spot.info.confirmationKey;
+  // var mailOptions = {
+  //   from: 'spot.check.app.donotreply@gmail.com',
+  //   to: spot.info.email,
+  //   subejct: 'test email',
+  //   text: text
+  // }
+  // transporter.sendMail(mailOptions, function(err, info) {
+  //   if(err) {
+  //     console.log(err);
+  //     // res.json({yo: 'error'});
+  //   } else {
+  //     console.log('message sent: ', info.response);
+  //     // res.json({yo: info.response});
+  //   }
+  // });
   // next();
 
 });//end test route
