@@ -34,13 +34,11 @@ aws.config.update({
 GLOBAL SPOT OBJECT
 *******************/
 var spot = {
-  spotName: "",
-  streetAddress: "",
-  city: "",
-  state: "",
-  notes: "",
-  bucket: "",
-  urls: []
+  info: {},
+  images: {
+    bucket: "",
+    urls: []
+  }
 };
 
 
