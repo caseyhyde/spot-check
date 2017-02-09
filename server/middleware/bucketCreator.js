@@ -1,6 +1,5 @@
 var Sentencer = require('sentencer');
 var aws = require('aws-sdk');
-// var keys = require('../../credentials/env.js');
 
 aws.config.update({
   secretAccessKey: process.env.SECRET_ACCESS_KEY,
