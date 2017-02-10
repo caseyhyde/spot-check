@@ -8,14 +8,11 @@ var s3 = new aws.S3();
 var multerS3 = require('multer-s3');
 var uuid = require('../modules/uuid-creator');
 var bucketCreator = require('../middleware/bucketCreator');
+// var nodemailer = require('nodemailer');
+var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
 var ConfirmSpot = require('../models/confirmSpot');
 var mongoConnection = require('../modules/mongo-connection');
 var SearchSpot = require('../models/searchSpot');
-/*******************
-      SEND GRID
-********************/
-var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
-var helper = require('sendgrid').mail;
 /*******************
 SET AWS CREDENTIALS
 ********************/
@@ -61,13 +58,17 @@ var upload = multer({
     acl: 'public-read' //storing files as public for now...
   })
 });
-router.use('/test', bucketCreator);//Adds req.bucket
+//add req.bucket
+router.use('/test', bucketCreator);
+//send req through multerS3 to aws (max of 10 files)
 router.post('/test', upload.array('file', 10), function(req, res, next) {
   spot.info = req.body;
   spot.images.bucket = req.bucket;
   spot.info.confirmationKey = uuid();
   console.log("spot with image location: ", spot);
+  //
   var confirmSpot = new ConfirmSpot(spot);
+
   confirmSpot.save(function(err, data) {
     // console.log("Add spot newSpot.save: ", newSpot.save());
     if(err) {
@@ -90,16 +91,16 @@ router.post('/test', upload.array('file', 10), function(req, res, next) {
               email: 'hyde.casey@gmail.com',
             },
           ],
-          subject: 'Spot Check: Confirm Your New Spot',
+          subject: 'Hello World from the SendGrid Node.js Library!',
         },
       ],
       from: {
-        email: 'spot.check.app.donotreply@gmail.com',
+        email: 'prime.casey.hyde@gmail.com',
       },
       content: [
         {
-          type: 'text/html',
-          value: '<html><body><h1>Hello World!!!</h1></br><p>' + spot.info.confirmationKey + '</p></body></html>',
+          type: 'text/plain',
+          value: 'Hello, Email!',
         },
       ],
     },
