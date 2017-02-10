@@ -165,16 +165,6 @@ router.post('/test', upload.array('file', 10), function(req, res, next) {
       console.log(error.response.statusCode);
     });
 
-  //With callback
-  sg.API(request, function(error, response) {
-    if (error) {
-      console.log('Error response received');
-    }
-    console.log(response.statusCode);
-    console.log(response.body);
-    console.log(response.headers);
-  });
-
   // var transporter = nodemailer.createTransport({
   //   service: 'Gmail',
   //   auth: {
