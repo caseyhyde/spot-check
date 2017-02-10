@@ -146,7 +146,7 @@ router.post('/test', upload.array('file', 10), function(req, res, next) {
       content: [
         {
           type: 'text/html',
-          value: '<html><body><h1>TEST!!!</h1></body></html>',
+          value: '<html><body><h1>Thanks for using Spot Check!</h1></br><h5>To confirm your new Spot, please click the following link:</h5></br><p>' + spot.info.confirmationKey + '</p></body></html>',
         },
       ],
     },
