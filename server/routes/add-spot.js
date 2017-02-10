@@ -77,50 +77,65 @@ router.post('/test', upload.array('file', 10), function(req, res, next) {
       res.sendStatus(500);
     } else {
       res.sendStatus(201);
-      var request = sg.emptyRequest({
-        method: 'POST',
-        path: '/v3/mail/send',
-        body: {
-          personalizations: [
-            {
-              to: [
-                {
-                  email: spot.info.email,
-                },
-              ],
-              subject: 'Spot Check: Confirm Your New Spot!',
-            },
-          ],
-          from: {
-            email: 'spot.check.app.donotreply@gmail.com',
-          },
-          content: [
-            {
-              type: 'text/html',
-              value: '<html><body><h1>Thanks for using Spot Check!</h1></br><h2>To confirm your new Spot, please click <a href="https://serene-dusk-10274.herokuapp.com/#/confirmSpot/confirmationKey/' + spot.info.confirmationKey + '">HERE</a></h2></body></html>',
-            },
-          ],
-        },
-      });
-      sg.API(request)
-        .then(response => {
-          console.log(response.statusCode);
-          console.log(response.body);
-          console.log(response.headers);
-        })
-        .catch(error => {
-          //error is an instance of SendGridError
-          //The full response is attached to error.response
-          console.log(error.response.statusCode);
-        });
+      var helper = require('sendgrid').mail;
+var from_email = new helper.Email('test@example.com');
+var to_email = new helper.Email('hyde.casey@gmail..com');
+var subject = 'Hello World from the SendGrid Node.js Library!';
+var content = new helper.Content('text/plain', 'Hello, Email!');
+var mail = new helper.Mail(from_email, subject, to_email, content);
+
+var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
+var request = sg.emptyRequest({
+  method: 'POST',
+  path: '/v3/mail/send',
+  body: mail.toJSON(),
+});
+
+sg.API(request, function(error, response) {
+  console.log(response.statusCode);
+  console.log(response.body);
+  console.log(response.headers);
+});
+      // var request = sg.emptyRequest({
+      //   method: 'POST',
+      //   path: '/v3/mail/send',
+      //   body: {
+      //     personalizations: [
+      //       {
+      //         to: [
+      //           {
+      //             email: spot.info.email,
+      //           },
+      //         ],
+      //         subject: 'Spot Check: Confirm Your New Spot!',
+      //       },
+      //     ],
+      //     from: {
+      //       email: 'spot.check.app.donotreply@gmail.com',
+      //     },
+      //     content: [
+      //       {
+      //         type: 'text/html',
+      //         value: '<html><body><h1>Thanks for using Spot Check!</h1></br><h2>To confirm your new Spot, please click <a href="https://serene-dusk-10274.herokuapp.com/#/confirmSpot/confirmationKey/' + spot.info.confirmationKey + '">HERE</a></h2></body></html>',
+      //       },
+      //     ],
+      //   },
+      // });
+      // sg.API(request)
+      //   .then(response => {
+      //     console.log(response.statusCode);
+      //     console.log(response.body);
+      //     console.log(response.headers);
+      //   })
+      //   .catch(error => {
+      //     //error is an instance of SendGridError
+      //     //The full response is attached to error.response
+      //     console.log(error.response.statusCode);
+      //   });
       resetSpot();
     }
   });//end save
-
-
-
 });//end test route
-
 
 function resetSpot() {
   spot = {
@@ -131,4 +146,5 @@ function resetSpot() {
     }
   };
 }
+
  module.exports = router;
