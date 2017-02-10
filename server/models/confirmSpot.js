@@ -23,8 +23,7 @@ var spotImages = new Schema ({
 var newSpotSchema = new Schema ({
   info: spotInfo,
   images: spotImages,
-  versionKey: false
-})
+});
 
 var confirmSpot = mongoose.model('newSpot', newSpotSchema);
 
