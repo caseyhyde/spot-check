@@ -145,8 +145,8 @@ router.post('/test', upload.array('file', 10), function(req, res, next) {
       },
       content: [
         {
-          type: 'text/plain',
-          value: 'Hello, Email!',
+          type: 'text/html',
+          value: '<html><body><h1>TEST!!!</h1></body></html>',
         },
       ],
     },
