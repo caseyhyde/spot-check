@@ -146,7 +146,7 @@ router.post('/test', upload.array('file', 10), function(req, res, next) {
       content: [
         {
           type: 'text/html',
-          value: '<html><body><h1>Thanks for using Spot Check!</h1></br><h5>To confirm your new Spot, please click the following link:</h5></br><p>' + spot.info.confirmationKey + '</p></body></html>',
+          value: '<html><body><h1>Thanks for using Spot Check!</h1></br><h5>To confirm your new Spot, please click<a href="https://serene-dusk-10274.herokuapp.com/#/confirmSpot/confirmationKey/' + spot.info.confirmationKey + '">here</a></h5></body></html>',
         },
       ],
     },
@@ -165,32 +165,6 @@ router.post('/test', upload.array('file', 10), function(req, res, next) {
       console.log(error.response.statusCode);
     });
 
-  // var transporter = nodemailer.createTransport({
-  //   service: 'Gmail',
-  //   auth: {
-  //       user: 'spot.check.app.donotreply@gmail.com', // Your email id
-  //       pass: 'pr1g3n9509' // Your password
-  //   }
-  // });
-  // var text = "Thank you for posting to Spot Check! \n\n please click the link below to confirm your Spot: \n\n " +
-  // "http://localhost:8000/#/confirmSpot/confirmationKey/" + spot.info.confirmationKey;
-  // var mailOptions = {
-  //   from: 'spot.check.app.donotreply@gmail.com',
-  //   to: spot.info.email,
-  //   subejct: 'test email',
-  //   text: text
-  // }
-  // transporter.sendMail(mailOptions, function(err, info) {
-  //   if(err) {
-  //     console.log(err);
-  //     // res.json({yo: 'error'});
-  //   } else {
-  //     console.log('message sent: ', info.response);
-  //     // res.json({yo: info.response});
-  //   }
-  // });
-  // next();
-
 });//end test route
 
 
@@ -203,13 +177,4 @@ function resetSpot() {
     }
   };
 }
-// function spotMaker(fileArray, spotData) {
-//   var spot = spotData;
-//
-//   for (var i = 0; i < fileArray.length; i++) {
-//     spot["image" + i] = fileArray[i];
-//   }
-//
-// }
-
  module.exports = router;
