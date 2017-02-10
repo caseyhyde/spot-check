@@ -11,7 +11,7 @@ var ConfirmSpot = require('../models/confirmSpot');
 var mongoConnection = require('../modules/mongo-connection');
 var SearchSpot = require('../models/searchSpot');
 var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
-var helper = sg.mail;
+var helper = require('sendgrid').mail;
 /*******************
 SET AWS CREDENTIALS
 ********************/
@@ -78,10 +78,14 @@ router.post('/test', upload.array('file', 10), function(req, res, next) {
       res.sendStatus(500);
     } else {
       res.sendStatus(201);
-      var from_email = new helper.Email('test@example.com');
-      var to_email = new helper.Email('hyde.casey@gmail..com');
-      var subject = 'Hello World from the SendGrid Node.js Library!';
-      var content = new helper.Content('text/plain', 'Hello, Email!');
+      var from_email = new helper.Email('spot.check.app.donotreply@gmail.com');
+      var to_email = new helper.Email(spot.info.email);
+      var subject = 'Spot Check: Your New Spot';
+      var content = new helper.Content('text/html', '<html><body><h1>Thanks for using Spot Check!</h1></br>' +
+        '<h3>The following link will take you to your new spot.</h3></br>' +
+        '<h5>In order for your new Spot to be viewed by others, you must follow this link and confirm your Spot</h5></br>' +
+        '<h5>This link will also allow you to edit your spot, and should be thought of as a password. Anyone with this link can edit or delete your Spot</h5></br>' +
+        '<p><a href="https://serene-dusk-10274.herokuapp.com/#/confirmSpot/confirmationKey/' + spot.info.confirmationKey + '">Click Here</a></p></body></html>');
       var mail = new helper.Mail(from_email, subject, to_email, content);
 
       var request = sg.emptyRequest({
