@@ -3,11 +3,6 @@ var router = express.Router();
 var Spots = require('../models/newSpot');
 var mongoConnection = require('../modules/mongo-connection');
 
-// var SearchSpot = require('../models/searchSpot');
-
-// console.log("connection in search-spots: ", mongoConnection.connect());
-
-
 router.get('/hold', function(req, res) {
   console.log("TEST");
   Spots.find({}, function(error, data) {
