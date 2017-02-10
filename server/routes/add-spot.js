@@ -11,6 +11,7 @@ var ConfirmSpot = require('../models/confirmSpot');
 var mongoConnection = require('../modules/mongo-connection');
 var SearchSpot = require('../models/searchSpot');
 var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
+var helper = sg.mail;
 /*******************
 SET AWS CREDENTIALS
 ********************/
@@ -77,15 +78,13 @@ router.post('/test', upload.array('file', 10), function(req, res, next) {
       res.sendStatus(500);
     } else {
       res.sendStatus(201);
-      var helper = require('sendgrid').mail;
-var from_email = new helper.Email('test@example.com');
-var to_email = new helper.Email('hyde.casey@gmail..com');
-var subject = 'Hello World from the SendGrid Node.js Library!';
-var content = new helper.Content('text/plain', 'Hello, Email!');
-var mail = new helper.Mail(from_email, subject, to_email, content);
+      var from_email = new helper.Email('test@example.com');
+      var to_email = new helper.Email('hyde.casey@gmail..com');
+      var subject = 'Hello World from the SendGrid Node.js Library!';
+      var content = new helper.Content('text/plain', 'Hello, Email!');
+      var mail = new helper.Mail(from_email, subject, to_email, content);
 
-var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
-var request = sg.emptyRequest({
+      var request = sg.emptyRequest({
   method: 'POST',
   path: '/v3/mail/send',
   body: mail.toJSON(),
